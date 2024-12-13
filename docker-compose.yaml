@@ -1,3 +1,7 @@
+networks:
+  wildlens-network:
+    driver: bridge
+
 services:
   mysql:
     image: mysql:8.0.33-oracle
@@ -7,6 +11,8 @@ services:
       MYSQL_DATABASE: wildlens
     ports:
       - "3306:3306"
+    networks:
+      - wildlens-network
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
@@ -26,3 +32,18 @@ services:
       PMA_PASSWORD: root
     ports:
       - "8080:80"
+    networks:
+      - wildlens-network
+
+  python-env:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: python-data-env
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/app
+      - ./data:/app/data
+    networks:
+      - wildlens-network
