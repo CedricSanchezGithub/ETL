@@ -42,6 +42,24 @@ RUN pip install --no-cache-dir jupyterlab
 # Vérifier l'installation de JupyterLab
 RUN python3 -m pip show jupyterlab
 
+# Télécharger le driver MySQL directement dans le dossier des JARs
+USER root
+
+# Installer unzip pour extraire le fichier ZIP
+RUN apt-get update && apt-get install -y unzip
+
+# Télécharger, extraire et placer le JAR dans le bon dossier
+RUN apt-get update && apt-get install -y unzip && \
+    wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j-9.1.0.zip -P /tmp && \
+    unzip /tmp/mysql-connector-j-9.1.0.zip -d /tmp && \
+    mkdir -p /usr/lib/jvm/jars/ && \
+    mv /tmp/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0.jar /usr/lib/jvm/jars/ && \
+    rm -rf /tmp/mysql-connector-j-9.1.0*
+
+
+# Revenir à l'utilisateur non-root
+USER jupyter
+
 # Exposer le port par défaut de Jupyter
 EXPOSE 8888
 
