@@ -54,7 +54,7 @@ RUN apt-get update && apt-get install -y unzip && \
     unzip /tmp/mysql-connector-j-9.1.0.zip -d /tmp && \
     mkdir -p /usr/lib/jvm/jars/ && \
     mv /tmp/mysql-connector-j-9.1.0/mysql-connector-j-9.1.0.jar /usr/lib/jvm/jars/ && \
-    rm -rf /tmp/mysql-connector-j-9.1.0*
+    rm -rf /tmp/mysql-connector-j-9.Télécharger1.0*
 
 
 # Revenir à l'utilisateur non-root
