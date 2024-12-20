@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="PYTHON_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/data/dataset_img/Castor" />
+      <excludeFolder url="file://$MODULE_DIR$/data/dataset_img/Chat" />
+      <excludeFolder url="file://$MODULE_DIR$/data/dataset_img/Chien" />
+      <excludeFolder url="file://$MODULE_DIR$/data/dataset_img/Coyote" />
+      <excludeFolder url="file://$MODULE_DIR$/data/dataset_img/Ecureuil" />
+      <excludeFolder url="file://$MODULE_DIR$/data/dataset_img/Lapin" />
+      <excludeFolder url="file://$MODULE_DIR$/data/dataset_img/Loup" />
+      <excludeFolder url="file://$MODULE_DIR$/data/dataset_img/Lynx" />
+      <excludeFolder url="file://$MODULE_DIR$/data/dataset_img/OpenAnimalTracks" />
+      <excludeFolder url="file://$MODULE_DIR$/data/dataset_img/Ours" />
+      <excludeFolder url="file://$MODULE_DIR$/data/dataset_img/Puma" />
+      <excludeFolder url="file://$MODULE_DIR$/data/dataset_img/Rat" />
+      <excludeFolder url="file://$MODULE_DIR$/data/dataset_img/Raton laveur" />
+      <excludeFolder url="file://$MODULE_DIR$/data/dataset_img/Renard" />
+    </content>
+    <orderEntry type="jdk" jdkName="Remote Python 3.9.21 Docker (&lt;none&gt;:&lt;none&gt;)" jdkType="Python SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
