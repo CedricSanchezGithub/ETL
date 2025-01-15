@@ -1,4 +1,5 @@
 # MSPR 2024 - 2025
+<<<<<<< HEAD
 ### Cédric Sanchez - Valentin Fiess - Jason TCHAGA - Louis NECTOUX ###
 
 
