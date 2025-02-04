@@ -16,22 +16,6 @@ services:
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
-    container_name: phpmyadmin
-    depends_on:
-      mysql:
-        condition: service_healthy
-    environment:
-      PMA_HOST: mysql-container
-      PMA_PORT: 3306
-      PMA_USER: root
-      PMA_PASSWORD: root
-    ports:
-      - "8080:80"
-    networks:
-      - wildlens-network
-
   python-env:
     build:
       context: .
@@ -44,3 +28,20 @@ services:
       - ./data:/app/data
     networks:
       - wildlens-network
+
+  grafana_pg:
+    image: grafana/grafana:latest
+    container_name: grafana_pg
+    restart: unless-stopped
+    ports:
+      - '3001:3000'
+    volumes:
+      - grafana-storage-pg:/var/lib/grafana
+    environment:
+      - GF_DATABASE_TYPE=postgres
+      - GF_DATABASE_HOST=postgresql
+      - GF_DATABASE_NAME=wildlens
+      - GF_DATABASE_USER=root
+      - GF_DATABASE_PASSWORD=root
+    depends_on:
+      - postgresql

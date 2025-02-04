@@ -1,1 +1,3 @@
 data/dataset_img/*
+/.output/data/nettoye.parquet/
+/.output/data/nettoye.csv/
