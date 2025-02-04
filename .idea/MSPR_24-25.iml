@@ -20,4 +20,8 @@
     <orderEntry type="jdk" jdkName="Remote Python 3.9.21 Docker (&lt;none&gt;:&lt;none&gt;)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="PyDocumentationSettings">
+    <option name="format" value="PLAIN" />
+    <option name="myDocStringFormat" value="Plain" />
+  </component>
 </module>

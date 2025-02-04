@@ -1,3 +1,15 @@
 data/dataset_img/*
 /.output/data/nettoye.parquet/
 /.output/data/nettoye.csv/
+
+# Ignorer les fichiers temporaires et spécifiques à PyCharm
+.idea/
+.pynb_checkpoints/
+__pycache__/
+*.pyc
+*.pyo
+*.DS_Store
+
+# Ignorer les fichiers liés à l'environnement de PyCharm
+243_*_pycharm-support-libs/
+.Trash-1000/
