@@ -23,4 +23,13 @@ docker compose up
 ```
 
 localhost:8080 
-root/root
+root/root  
+
+
+```bash
+docker build -t python-data-env .
+```
+
+```bash
+docker run -p 8888:8888 -v $(pwd):/app -it python-data-env
+```
