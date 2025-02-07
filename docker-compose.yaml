@@ -16,6 +16,8 @@ services:
       - "3306:3306"
     networks:
       - wildlens-network
+    volumes:
+      - ./installation/initdb:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
 
@@ -43,7 +45,7 @@ services:
     environment:
       - GF_DATABASE_TYPE=mysql
       - GF_DATABASE_HOST=mysql
-      - GF_DATABASE_NAME=wildlens
+      - GF_DATABASE_NAME=grafana_db
       - GF_DATABASE_USER=grafana
       - GF_DATABASE_PASSWORD=grafana
     depends_on:
@@ -53,7 +55,7 @@ services:
       - wildlens-network
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
+    image: phpmyadmin/phpmyadmin:5.2.2
     container_name: phpmyadmin
     restart: always
     environment:
