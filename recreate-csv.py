@@ -12,7 +12,7 @@ with open(input_csv_path, mode='r', encoding='utf-8-sig') as infile:
 
 # Créer le fichier CSV de sortie avec les nouvelles colonnes
 with open(output_csv_path, mode='w', newline='', encoding='utf-8') as outfile:
-    fieldnames = ['Nom', 'Famille', 'Nom latin', 'Description', 'Population estimée', 'Plus grande menace',
+    fieldnames = ['Espèce', 'Famille', 'Nom latin', 'Description', 'Population estimée', 'Plus grande menace',
                   'Localisation', 'Slogan']
     writer = csv.DictWriter(outfile, fieldnames=fieldnames)
     writer.writeheader()
