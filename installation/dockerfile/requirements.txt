@@ -5,5 +5,3 @@ matplotlib
 seaborn
 scikit-learn
 jupyterlab
-mistralai
-python-dotenv
