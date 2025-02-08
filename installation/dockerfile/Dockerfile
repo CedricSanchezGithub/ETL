@@ -22,8 +22,8 @@ RUN apt-get update && apt-get install -y \
     apt-get remove -y wget unzip && apt-get autoremove -y && apt-get clean
 
 # Configurer Java
-ENV JAVA_HOME /usr/lib/jvm/jdk-11
-ENV PATH $JAVA_HOME/bin:$PATH
+ENV JAVA_HOME = /usr/lib/jvm/jdk-11
+ENV PATH = $JAVA_HOME/bin:$PATH
 
 # Copier et installer les dépendances Python
 COPY requirements.txt /app/requirements.txt

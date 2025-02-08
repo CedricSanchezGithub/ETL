@@ -2,34 +2,26 @@
 
 ### Créer un environnement virtuel
 ```bash
-python -m venv env
+python3 -m venv env && source env/bin/activate
 ```
-```bash
-source env/bin/activate
-```
-```bash
-pip install --upgrade pip
-```
-```bash
-pip install notebook
-```
-```bash
-pip install pyspark pandas
-```
-
-### Lancer la base de données mysql :
+---
+### Lancer la base de données mysql 
 ```bash
 docker compose up
 ```
+---
+### Accéder à phpmyadmin 
+http://localhost:8080   
 
-localhost:8080 
-root/root  
+---
 
+### JDK pour java 11 sur Linux   
+https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz  
 
+### Choisir sa version de java sur Linux
 ```bash
-docker build -t python-data-env .
+sudo update-alternatives --config java
 ```
 
-```bash
-docker run -p 8888:8888 -v $(pwd):/app -it python-data-env
-```
+### Drivers mysql sur Linux 
+https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j-9.1.0.zip

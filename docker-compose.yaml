@@ -21,19 +21,6 @@ services:
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
 
-  python-env:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: python-data-env
-    ports:
-      - "8888:8888"
-    volumes:
-      - .:/app
-      - ./data:/app/data
-    networks:
-      - wildlens-network
-
   grafana_pg:
     image: grafana/grafana:latest
     container_name: grafana_pg
