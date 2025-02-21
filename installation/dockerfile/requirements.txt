@@ -5,3 +5,6 @@ matplotlib
 seaborn
 scikit-learn
 jupyterlab
+mistralai
+python-dotenv
+ace_tools
