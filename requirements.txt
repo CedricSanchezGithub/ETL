@@ -8,3 +8,4 @@ jupyterlab
 mistralai
 python-dotenv
 ace_tools
+tqdm
