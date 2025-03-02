@@ -10,6 +10,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: wildlens
+      MYSQL_DATABASE_EXTRA: grafana_db
       MYSQL_USER: grafana
       MYSQL_PASSWORD: grafana
     ports:
