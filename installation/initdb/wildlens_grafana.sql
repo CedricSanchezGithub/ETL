@@ -92,7 +92,7 @@ DROP TABLE IF EXISTS `wildlens_images`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `wildlens_images` (
   `id_image` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `image` blob NOT NULL,
+  `image` varchar(255) NOT NULL,
   `id_espece` bigint unsigned NOT NULL,
   `id_etat` bigint unsigned NOT NULL,
   PRIMARY KEY (`id_image`),
