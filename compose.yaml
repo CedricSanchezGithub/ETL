@@ -59,5 +59,21 @@ services:
     networks:
       - wildlens-network
 
+  msprbackend:
+    image: cedsanc/msprbackend
+    container_name: msprbackend
+    restart: unless-stopped
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/wildlens?serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - "8090:8090"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - wildlens-network
+
 volumes:
   grafana-storage:
