@@ -13,8 +13,8 @@ from notebook_to_python import main_function
 logging.basicConfig()
 logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
-def scraping_job():
-    """Job appelé par APScheduler : lance le script de scraping."""
+def pipeline_etl_job():
+    """Job appelé par APScheduler : lance le script principal du projet."""
     main_function()
 
 @app.route('/')
@@ -22,16 +22,16 @@ def index():
     return "APScheduler est en cours d'exécution. Accès racine de l'application Flask."
 
 @app.route('/triggermspr', methods=['GET'])
-def trigger_scrape():
-    """Endpoint pour déclencher le scraping manuellement."""
-    scraping_job()
-    return "Scraping déclenché manuellement."
+def trigger_pipeline_etl():
+    """Endpoint pour déclencher l'ETL manuellement."""
+    pipeline_etl_job()
+    return "Pipeline ETL déclenché manuellement."
 
 if __name__ == '__main__':
     # Configuration d'APScheduler
     scheduler = BackgroundScheduler()
-    # Planifie l'exécution de 'scraping_job' tous les jours à 00:00
-    scheduler.add_job(scraping_job, 'cron', hour=0, minute=0, id='daily_scraping')
+    # Planifie l'exécution de 'pipeline_etl_job' tous les jours à 00:00
+    scheduler.add_job(pipeline_etl_job, 'cron', hour=0, minute=0, id='daily_scraping')
     scheduler.start()
 
     # Arrêt propre du scheduler quand l'appli s'arrête
