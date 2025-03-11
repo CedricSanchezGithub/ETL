@@ -5,6 +5,8 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
 import logging
 
+from ETL.metadata_manager import create_metadata
+
 # Application Flask (optionnelle si vous voulez un endpoint HTTP)
 app = Flask(__name__)
 
@@ -25,6 +27,12 @@ def index():
 def trigger_pipeline_etl():
     """Endpoint pour déclencher l'ETL manuellement."""
     pipeline_etl_job()
+    return "Pipeline ETL déclenché manuellement."
+
+@app.route('/triggermetadata', methods=['GET'])
+def trigger_pipeline_metadata():
+    """Endpoint pour déclencher l'ETL manuellement."""
+    create_metadata()
     return "Pipeline ETL déclenché manuellement."
 
 if __name__ == '__main__':
