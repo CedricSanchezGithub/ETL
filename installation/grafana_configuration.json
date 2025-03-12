@@ -24,7 +24,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "cefg19z9a718ge"
+        "uid": "fefmxrui2urcwb"
       },
       "fieldConfig": {
         "defaults": {
@@ -74,6 +74,114 @@
         "w": 12,
         "x": 0,
         "y": 0
+      },
+      "id": 5,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": -30,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "11.5.2",
+      "targets": [
+        {
+          "dataset": "grafana_db",
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT f.nom_fr AS espece, \n       f.coeff_multiplication, \n       COUNT(i.id_image) AS nombre_images\nFROM wildlens_facts f\nLEFT JOIN wildlens_images i ON f.id_espece = i.id_espece\nGROUP BY f.nom_fr, f.coeff_multiplication\nORDER BY f.coeff_multiplication DESC;\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Espèces avec leur Coefficient de Multiplication et Nombre d'Images",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "fefmxrui2urcwb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
       },
       "id": 4,
       "options": {
@@ -134,7 +242,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "cefg19z9a718ge"
+        "uid": "fefmxrui2urcwb"
       },
       "fieldConfig": {
         "defaults": {
@@ -184,7 +292,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 16
       },
       "id": 3,
       "options": {
@@ -242,7 +350,8 @@
     },
     {
       "datasource": {
-        "uid": "cefg19z9a718ge"
+        "type": "mysql",
+        "uid": "fefmxrui2urcwb"
       },
       "fieldConfig": {
         "defaults": {
@@ -291,7 +400,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 16
+        "y": 24
       },
       "id": 2,
       "options": {
@@ -352,7 +461,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "cefg19z9a718ge"
+        "uid": "fefmxrui2urcwb"
       },
       "fieldConfig": {
         "defaults": {
@@ -380,7 +489,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 24
+        "y": 32
       },
       "id": 1,
       "options": {
@@ -452,6 +561,6 @@
   "timezone": "browser",
   "title": "Wildlens dashboard",
   "uid": "cefg1mixqptkwb",
-  "version": 7,
+  "version": 4,
   "weekStart": ""
 }
