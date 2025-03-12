@@ -9,4 +9,4 @@ http://localhost:8090/api/getmetadata/noms-fr
 http://localhost:8090/api/getmetadata/5  
 http://localhost:3001/  
 
-admin - password123
+admin admin lors de la première connexion sur Grafana
