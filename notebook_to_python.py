@@ -178,6 +178,7 @@ def main_function():
     # Création des DataFrames
     image_data_new = pd.DataFrame(image_data_new,
                                   columns=["Nom du dossier", "Nombre d'images", "Largeur Moyenne", "Hauteur Moyenne"])
+    image_data_new["Coeff"] = df_image["Coeff"]
     #%% md
     # ## Labélisation
     # Le dataframe d'images et les métadata sont fusionnées afin que chaque image corresponde à des métadonnées : c'est la labélisation.
@@ -185,6 +186,7 @@ def main_function():
     df_metadata = pd.read_csv("./ressource/metadata.csv")
 
     df_merged = pd.merge(image_data_new, df_metadata, left_on='Nom du dossier', right_on='Espèce anglais', how='left')
+    df_merged = df_merged.drop(columns=["Nom du dossier", "Largeur Moyenne", "Hauteur Moyenne"])
 
     print(df_merged)
     print(df_merged.shape)
@@ -201,19 +203,16 @@ def main_function():
     image_new = "ressource/image/augmented_train"
 
     df_dict = {}
-    for dossier in df_merged_spark.select("Nom du dossier").distinct().rdd.flatMap(lambda x: x).collect():
+    for dossier in df_merged_spark.select("Espèce anglais").distinct().rdd.flatMap(lambda x: x).collect():
         folder_path = os.path.join(image_new, dossier)
         if os.path.exists(folder_path):
-            df_images = spark.createDataFrame([(dossier, os.path.join(dossier, img)) for img in os.listdir(folder_path)],
-                                              ["Nom du dossier", "Chemin Relatif"])
-            df_dict[dossier] = df_images.join(df_merged_spark, on="Nom du dossier", how="left")
+            df_images = spark.createDataFrame(
+                [(dossier, os.path.join(dossier, img)) for img in os.listdir(folder_path)],
+                ["Espèce anglais", "Chemin Relatif"])
+            df_dict[dossier] = df_images.join(df_merged_spark.select("Espèce anglais"), on="Espèce anglais")
 
-    for dossier, df in df_dict.items():
-        df.write.mode("overwrite").parquet(f"ressource/dataframes_parquet/{dossier}")
-        df.write.mode("overwrite").csv(f"ressource/dataframes_csv/{dossier}")
-
-    train_ratio = 0.8
-    val_ratio = 0.1
+    train_ratio = 0.7
+    val_ratio = 0.15
 
     for dossier, df in df_dict.items():
         df = df.withColumn("rand_val", rand())
@@ -258,29 +257,32 @@ def main_function():
 
         df_etat.write.mode("append").jdbc(url=db_url, table="wildlens_etat", properties=db_properties)
     #%%
+    metadata_path = "ressource/data_merged.csv"
+    df_meta = spark.read.option("header", True).option("sep", ",").csv(metadata_path)
+
     df_existing = spark.read.jdbc(url=db_url, table="wildlens_facts", properties=db_properties)
 
     if df_existing.count() == 0:
-
         print("La table wildlens_facts est vide, insertion des données...")
 
-        df_facts = df_final.select(
-            "Espèce français", "Famille", "Nom latin", "Description", "Population estimée", "Localisation", "Espèce anglais",
-            "Nombre d'images"
+        df_facts = df_meta.select(
+            "Espèce français", "Famille", "Nom latin", "Description", "Population estimée", "Localisation",
+            "Espèce anglais",
+            "Nombre d'images", "Coeff"
         ).dropDuplicates()
 
         df_facts = (df_facts.withColumnRenamed("Espèce anglais", "nom_en")
                     .withColumnRenamed("Population estimée", "population_estimee")
                     .withColumnRenamed("Nombre d'images", "nombre_image")
                     .withColumnRenamed("Espèce français", "nom_fr")
-                    .withColumnRenamed("Nom latin", "nom_latin"))
-
-        df_facts = df_facts.withColumn("coeff_multiplication", lit(1))
+                    .withColumnRenamed("Nom latin", "nom_latin")
+                    .withColumnRenamed("Famille", "famille")
+                    .withColumnRenamed("Localisation", "localisation")
+                    .withColumnRenamed("Coeff", "coeff_multiplication"))
 
         df_facts.write.jdbc(url=db_url, table="wildlens_facts", mode="append", properties=db_properties)
 
         print("✅ Table wildlens_facts mise à jour avec succès !")
-
 
     #%%
     df_existing = spark.read.jdbc(url=db_url, table="wildlens_images", properties=db_properties)
@@ -289,16 +291,14 @@ def main_function():
         print("La table wildlens_images est vide, insertion des données...")
 
         df_images = spark.read.jdbc(url=db_url, table="wildlens_facts", properties=db_properties)
-        df_id_espece = df_images.select("id_espece", "nom_fr").distinct()
+        df_id_espece = df_images.select("id_espece", "nom_en").distinct()
 
         if "id_espece" in df_final.columns:
             df_final = df_final.drop("id_espece")
 
         # Effectuer la jointure pour récupérer l'ID de l'espèce
-        df_final = df_final.join(df_id_espece, df_final["Espèce français"] == df_id_espece["nom_fr"], "left")
+        df_final = df_final.join(df_id_espece, df_final["Espèce anglais"] == df_id_espece["nom_en"], "left")
 
-        # Supprimer la colonne "nom_fr" après la jointure (elle ne sert plus)
-        df_final = df_final.drop("nom_fr")
         print(df_final.show())
         df_facts = df_final.select("Chemin Relatif", "id_espece", "state").dropDuplicates()
 
