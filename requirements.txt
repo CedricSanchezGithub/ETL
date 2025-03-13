@@ -8,3 +8,6 @@ jupyterlab
 mistralai
 python-dotenv
 ace_tools
+flask
+apscheduler
+BackgroundScheduler
