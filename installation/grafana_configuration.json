@@ -24,7 +24,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fefmxrui2urcwb"
+        "uid": "feg4at7s2q8lcb"
       },
       "fieldConfig": {
         "defaults": {
@@ -71,9 +71,117 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 19,
         "x": 0,
         "y": 0
+      },
+      "id": 6,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "auto",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 25,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "11.5.2",
+      "targets": [
+        {
+          "dataset": "grafana_db",
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": " SELECT \n    f.nom_fr AS espece,\n    SUM(CASE WHEN e.type = 'train' THEN 1 ELSE 0 END) AS train,\n    SUM(CASE WHEN e.type = 'test' THEN 1 ELSE 0 END) AS test,\n    SUM(CASE WHEN e.type = 'validation' THEN 1 ELSE 0 END) AS val\nFROM wildlens_images i\nJOIN wildlens_facts f ON i.id_espece = f.id_espece\nJOIN wildlens_etat e ON i.id_etat = e.id_etat\nGROUP BY f.nom_fr\nORDER BY f.nom_fr ASC;",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Diversité des états - par animal",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "mysql",
+        "uid": "feg4at7s2q8lcb"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 19,
+        "x": 0,
+        "y": 8
       },
       "id": 5,
       "options": {
@@ -132,117 +240,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fefmxrui2urcwb"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "fillOpacity": 80,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineWidth": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 8
-      },
-      "id": 4,
-      "options": {
-        "barRadius": 0,
-        "barWidth": 0.97,
-        "colorByField": "espece",
-        "fullHighlight": false,
-        "groupWidth": 0.7,
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "orientation": "auto",
-        "showValue": "auto",
-        "stacking": "none",
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        },
-        "xField": "espece",
-        "xTickLabelRotation": 45,
-        "xTickLabelSpacing": 0
-      },
-      "pluginVersion": "11.5.2",
-      "targets": [
-        {
-          "dataset": "grafana_db",
-          "editorMode": "code",
-          "format": "table",
-          "rawQuery": true,
-          "rawSql": "SELECT f.nom_fr AS espece, e.type AS etat, COUNT(i.id_image) AS nombre_images\nFROM wildlens_images i\nJOIN wildlens_facts f ON i.id_espece = f.id_espece\nJOIN wildlens_etat e ON i.id_etat = e.id_etat\nGROUP BY f.nom_fr, e.type\nORDER BY f.nom_fr ASC, nombre_images DESC;\n",
-          "refId": "A",
-          "sql": {
-            "columns": [
-              {
-                "parameters": [],
-                "type": "function"
-              }
-            ],
-            "groupBy": [
-              {
-                "property": {
-                  "type": "string"
-                },
-                "type": "groupBy"
-              }
-            ],
-            "limit": 50
-          }
-        }
-      ],
-      "title": "Diversité des états - par animal",
-      "type": "barchart"
-    },
-    {
-      "datasource": {
-        "type": "mysql",
-        "uid": "fefmxrui2urcwb"
+        "uid": "feg4at7s2q8lcb"
       },
       "fieldConfig": {
         "defaults": {
@@ -286,11 +284,30 @@
             ]
           }
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "categorie"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "palette-classic"
+                }
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 1
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 12,
+        "w": 19,
         "x": 0,
         "y": 16
       },
@@ -324,7 +341,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT e.type, COUNT(i.id_image) AS nombre_images\nFROM wildlens_etat e\nLEFT JOIN wildlens_images i ON e.id_etat = i.id_etat\nGROUP BY e.type\nORDER BY nombre_images DESC;\n",
+          "rawSql": "SELECT e.type AS categorie, \n       COUNT(i.id_image) AS nombre_images\nFROM wildlens_etat e\nJOIN wildlens_images i ON e.id_etat = i.id_etat\nWHERE e.type IN ('train', 'test', 'validation')\nGROUP BY e.type\nORDER BY FIELD(e.type, 'train', 'test', 'validation');\n",
           "refId": "A",
           "sql": {
             "columns": [
@@ -351,7 +368,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fefmxrui2urcwb"
+        "uid": "feg4at7s2q8lcb"
       },
       "fieldConfig": {
         "defaults": {
@@ -397,10 +414,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 12,
+        "w": 19,
         "x": 0,
-        "y": 24
+        "y": 28
       },
       "id": 2,
       "options": {
@@ -461,7 +478,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "fefmxrui2urcwb"
+        "uid": "feg4at7s2q8lcb"
       },
       "fieldConfig": {
         "defaults": {
@@ -489,7 +506,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 32
+        "y": 40
       },
       "id": 1,
       "options": {
@@ -561,6 +578,6 @@
   "timezone": "browser",
   "title": "Wildlens dashboard",
   "uid": "cefg1mixqptkwb",
-  "version": 4,
+  "version": 6,
   "weekStart": ""
 }

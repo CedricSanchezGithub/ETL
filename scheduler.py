@@ -25,6 +25,7 @@ def index():
 
 @app.route('/triggermspr', methods=['GET'])
 def trigger_pipeline_etl():
+    print("Lancement de la pipeline via le endpoint /triggermspr")
     """Endpoint pour déclencher l'ETL manuellement."""
     pipeline_etl_job()
     return "Pipeline ETL déclenché manuellement."
@@ -39,7 +40,7 @@ if __name__ == '__main__':
     # Configuration d'APScheduler
     scheduler = BackgroundScheduler()
     # Planifie l'exécution de 'pipeline_etl_job' tous les jours à 00:00
-    scheduler.add_job(pipeline_etl_job, 'cron', hour=0, minute=0, id='daily_scraping')
+    scheduler.add_job(pipeline_etl_job, 'cron', hour=0, minute=0, id='daily_etl')
     scheduler.start()
 
     # Arrêt propre du scheduler quand l'appli s'arrête
