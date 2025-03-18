@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
-from flask import Flask
-from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
 import logging
 
-from ETL.metadata_manager import create_metadata
+from apscheduler.schedulers.background import BackgroundScheduler
+from flask import Flask
+
+from metadata_manager import create_metadata
 
 # Application Flask (optionnelle si vous voulez un endpoint HTTP)
 app = Flask(__name__)
@@ -15,13 +16,16 @@ from notebook_to_python import main_function
 logging.basicConfig()
 logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
+
 def pipeline_etl_job():
     """Job appelé par APScheduler : lance le script principal du projet."""
     main_function()
 
+
 @app.route('/')
 def index():
     return "APScheduler est en cours d'exécution. Accès racine de l'application Flask."
+
 
 @app.route('/triggermspr', methods=['GET'])
 def trigger_pipeline_etl():
@@ -29,11 +33,13 @@ def trigger_pipeline_etl():
     pipeline_etl_job()
     return "Pipeline ETL déclenché manuellement."
 
+
 @app.route('/triggermetadata', methods=['GET'])
 def trigger_pipeline_metadata():
     """Endpoint pour déclencher l'ETL manuellement."""
     create_metadata()
     return "Pipeline ETL déclenché manuellement."
+
 
 if __name__ == '__main__':
     # Configuration d'APScheduler
