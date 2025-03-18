@@ -1,17 +1,54 @@
-#%%
-from pyspark.sql import DataFrame, Row, SparkSession
+# %%
 import os
+from functools import reduce
+
+import albumentations as A
+import cv2
 import numpy as np
 import pandas as pd
-import cv2
 from PIL import Image
-import albumentations as A
-from pyspark.sql.functions import rand, when, col
-from functools import reduce
+from pyspark.sql import DataFrame, Row, SparkSession
 from pyspark.sql.functions import lit
+from pyspark.sql.functions import rand, when, col
+
+
+# Fonction pour récupérer les infos des images d'un dossier (en gérant les dossiers absents)
+def get_image_info(folder_path):
+    if not os.path.exists(folder_path):  # 📌 Vérifie si le dossier existe
+        return 0, None, None  # ⚠️ Si absent → 0 images et tailles nulles
+
+    image_files = [f for f in os.listdir(folder_path) if f.lower().endswith(('png', 'jpg', 'jpeg'))]
+    num_images = len(image_files)
+
+    if num_images == 0:
+        return num_images, None, None  # Aucun fichier image
+
+    widths, heights = [], []
+
+    for img_file in image_files:
+        img_path = os.path.join(folder_path, img_file)
+        try:
+            with Image.open(img_path) as img:
+                widths.append(img.width)
+                heights.append(img.height)
+        except Exception as e:
+            print(f"Erreur avec l'image {img_file}: {e}")
+
+    avg_width = sum(widths) / len(widths) if widths else None
+    avg_height = sum(heights) / len(heights) if heights else None
+
+    return num_images, avg_width, avg_height
+
+
+print("✅ Extraction des informations terminée.")
+
+print("🔄 Début de la Data Augmentation...")
+# Listes pour stocker les infos
+image_data = []
+
 
 def main_function():
-    #%%
+    # %%
     # Variables
     # Paramètres de connexion MySQL
     db_url = "jdbc:mysql://localhost:3306/wildlens?serverTimezone=UTC"
@@ -19,7 +56,7 @@ def main_function():
                      "password": "root",
                      "driver": "com.mysql.cj.jdbc.Driver"}
     mysql_driver_path = "installation/mysql-connector-j-9.1.0.jar"
-    #%%
+    # %%
     # Initialisation de SparkSession
     spark = SparkSession.builder \
         .appName("WildLens ETL - MSPR 24-25") \
@@ -29,7 +66,7 @@ def main_function():
     print("✅ Spark initialisé avec le driver MySQL :", mysql_driver_path)
     print("🔗 Driver chargé :", spark.sparkContext.getConf().get("spark.jars"))
 
-    #%%
+    # %%
     try:
         df_tables = spark.read \
             .format("jdbc") \
@@ -47,50 +84,15 @@ def main_function():
     except Exception as e:
         print(f"❌ Erreur de connexion à MySQL : {e}")
 
-    #%%
+    # %%
     folder_all_animals = [d for d in os.listdir("ressource/image/train") if
                           os.path.isdir(os.path.join("ressource/image/train", d))]
     df_all_animals = pd.DataFrame(folder_all_animals, columns=["Nom du dossier"])
 
-    #%%
+    # %%
     # Définition des chemins des datasets
     print("📂 Création du dataframe avec toutes les images...")
     image = "ressource/image/train"
-
-
-    # Fonction pour récupérer les infos des images d'un dossier (en gérant les dossiers absents)
-    def get_image_info(folder_path):
-        if not os.path.exists(folder_path):  # 📌 Vérifie si le dossier existe
-            return 0, None, None  # ⚠️ Si absent → 0 images et tailles nulles
-
-        image_files = [f for f in os.listdir(folder_path) if f.lower().endswith(('png', 'jpg', 'jpeg'))]
-        num_images = len(image_files)
-
-        if num_images == 0:
-            return num_images, None, None  # Aucun fichier image
-
-        widths, heights = [], []
-
-        for img_file in image_files:
-            img_path = os.path.join(folder_path, img_file)
-            try:
-                with Image.open(img_path) as img:
-                    widths.append(img.width)
-                    heights.append(img.height)
-            except Exception as e:
-                print(f"Erreur avec l'image {img_file}: {e}")
-
-
-        avg_width = sum(widths) / len(widths) if widths else None
-        avg_height = sum(heights) / len(heights) if heights else None
-
-        return num_images, avg_width, avg_height
-
-    print("✅ Extraction des informations terminée.")
-
-    print("🔄 Début de la Data Augmentation...")
-    # Listes pour stocker les infos
-    image_data = []
 
     # Parcourir chaque dossier et extraire les infos
     for folder in df_all_animals["Nom du dossier"]:
@@ -99,11 +101,11 @@ def main_function():
         num_images_train, avg_width_train, avg_height_train = get_image_info(folder_path_train)
         image_data.append([folder, num_images_train, avg_width_train, avg_height_train])
 
-
     # Création des DataFrames
-    df_image = pd.DataFrame(image_data, columns=["Nom du dossier", "Nombre d'images", "Largeur Moyenne", "Hauteur Moyenne"])
+    df_image = pd.DataFrame(image_data,
+                            columns=["Nom du dossier", "Nombre d'images", "Largeur Moyenne", "Hauteur Moyenne"])
 
-    #%%
+    # %%
     # 📂 Définition du chemin des images
     image = "ressource/image/train"
     augmented_image_folder = "ressource/image/augmented_train"
@@ -114,7 +116,7 @@ def main_function():
 
     print(f"Médiane: {median_images}, Q3: {q3_images}")
     print("✅ Data Augmentation terminée !")
-    #%%
+    # %%
     # Création du dossier de sortie s'il n'existe pas
     os.makedirs(augmented_image_folder, exist_ok=True)
 
@@ -163,7 +165,7 @@ def main_function():
 
     print("✅ Data Augmentation terminée avec succès !")
     print("🔄 Fusion des données avec les métadonnées...")
-    #%%
+    # %%
     # Listes pour stocker les infos
     image_data_new = []
     image_new = "ressource/image/augmented_train"
@@ -178,10 +180,10 @@ def main_function():
     # Création des DataFrames
     image_data_new = pd.DataFrame(image_data_new,
                                   columns=["Nom du dossier", "Nombre d'images", "Largeur Moyenne", "Hauteur Moyenne"])
-    #%% md
+    # %% md
     # ## Labélisation
     # Le dataframe d'images et les métadata sont fusionnées afin que chaque image corresponde à des métadonnées : c'est la labélisation.
-    #%%
+    # %%
     df_metadata = pd.read_csv("./ressource/metadata.csv")
 
     df_merged = pd.merge(image_data_new, df_metadata, left_on='Nom du dossier', right_on='Espèce anglais', how='left')
@@ -195,7 +197,7 @@ def main_function():
     if print(df_merged['Espèce anglais'].isna().sum()):
         print("Toutes les lignes ont trouvés une correspondance")
     print("✅ Fusion des datasets terminée !")
-    #%%
+    # %%
     print("📊 Création des partitions de données pour Spark...")
     df_merged_spark = spark.createDataFrame(df_merged)
     image_new = "ressource/image/augmented_train"
@@ -204,8 +206,9 @@ def main_function():
     for dossier in df_merged_spark.select("Nom du dossier").distinct().rdd.flatMap(lambda x: x).collect():
         folder_path = os.path.join(image_new, dossier)
         if os.path.exists(folder_path):
-            df_images = spark.createDataFrame([(dossier, os.path.join(dossier, img)) for img in os.listdir(folder_path)],
-                                              ["Nom du dossier", "Chemin Relatif"])
+            df_images = spark.createDataFrame(
+                [(dossier, os.path.join(dossier, img)) for img in os.listdir(folder_path)],
+                ["Nom du dossier", "Chemin Relatif"])
             df_dict[dossier] = df_images.join(df_merged_spark, on="Nom du dossier", how="left")
 
     for dossier, df in df_dict.items():
@@ -241,10 +244,10 @@ def main_function():
         print("⚠️ Aucun DataFrame à fusionner !")
     print("✅ Partitionnement terminé.")
     print("🔄 Mise à jour des tables MySQL...")
-    #%%
+    # %%
     print("Colonnes de df_facts :", df_final.columns)
     print(df_final.describe())
-    #%%
+    # %%
     df_existing = spark.read.jdbc(url=db_url, table="wildlens_etat", properties=db_properties)
 
     if df_existing.count() == 0:
@@ -257,15 +260,15 @@ def main_function():
         ])
 
         df_etat.write.mode("append").jdbc(url=db_url, table="wildlens_etat", properties=db_properties)
-    #%%
+    # %%
     df_existing = spark.read.jdbc(url=db_url, table="wildlens_facts", properties=db_properties)
 
     if df_existing.count() == 0:
-
         print("La table wildlens_facts est vide, insertion des données...")
 
         df_facts = df_final.select(
-            "Espèce français", "Famille", "Nom latin", "Description", "Population estimée", "Localisation", "Espèce anglais",
+            "Espèce français", "Famille", "Nom latin", "Description", "Population estimée", "Localisation",
+            "Espèce anglais",
             "Nombre d'images"
         ).dropDuplicates()
 
@@ -281,8 +284,7 @@ def main_function():
 
         print("✅ Table wildlens_facts mise à jour avec succès !")
 
-
-    #%%
+    # %%
     df_existing = spark.read.jdbc(url=db_url, table="wildlens_images", properties=db_properties)
 
     if df_existing.count() == 0:
