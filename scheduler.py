@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from flask import render_template
 from flask import Flask
 from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
@@ -35,6 +36,11 @@ def trigger_pipeline_metadata():
     """Endpoint pour déclencher l'ETL manuellement."""
     create_metadata()
     return "Pipeline ETL déclenché manuellement."
+
+
+@app.route('/interface')
+def interface():
+    return render_template('interface.html')
 
 if __name__ == '__main__':
     # Configuration d'APScheduler
