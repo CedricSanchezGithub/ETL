@@ -40,13 +40,6 @@ def get_image_info(folder_path):
     return num_images, avg_width, avg_height
 
 
-print("✅ Extraction des informations terminée.")
-
-print("🔄 Début de la Data Augmentation...")
-# Listes pour stocker les infos
-image_data = []
-
-
 def main_function():
     # %%
     # Variables
@@ -94,6 +87,12 @@ def main_function():
     print("📂 Création du dataframe avec toutes les images...")
     image = "ressource/image/train"
 
+    print("✅ Extraction des informations terminée.")
+
+    print("🔄 Début de la Data Augmentation...")
+    # Listes pour stocker les infos
+    image_data = []
+
     # Parcourir chaque dossier et extraire les infos
     for folder in df_all_animals["Nom du dossier"]:
         # ✂️ Images recadrées - entraînement
@@ -136,7 +135,7 @@ def main_function():
         A.Resize(256, 256)  # Redimensionne sans ToTensorV2
     ])
 
-    # Boucle sur chaque classe d’animaux
+    # Boucle sur chaque classe d'animaux
     for index, row in df_image.iterrows():
         if row["Coeff"] < 4:
             folder_name = row["Nom du dossier"]
@@ -233,7 +232,7 @@ def main_function():
         df.write.mode("overwrite").parquet(f"ressource/dataframes_parquet/{dossier}")
         df.write.mode("overwrite").csv(f"ressource/dataframes_csv/{dossier}")
 
-        print(f"✅ State ajouté et fichier enregistré pour {dossier}")
+        print(f"��� State ajouté et fichier enregistré pour {dossier}")
 
     if df_dict:
         df_final = reduce(DataFrame.unionAll, df_dict.values())
@@ -301,10 +300,6 @@ def main_function():
 
         # Supprimer la colonne "nom_fr" après la jointure (elle ne sert plus)
         df_final = df_final.drop("nom_fr")
-        print(df_final.show())
-        df_facts = df_final.select("Chemin Relatif", "id_espece", "state").dropDuplicates()
-
-        # Vérifier les colonnes après la jointure
         print(df_final.show())
 
         df_facts = (df_facts.withColumnRenamed("Chemin Relatif", "image")
