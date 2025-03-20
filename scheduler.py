@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
 from flask import render_template
-from flask import Flask
-from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
 import logging
 
