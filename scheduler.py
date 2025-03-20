@@ -6,7 +6,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import atexit
 import logging
 
-from ETL.metadata_manager import create_metadata
+from metadata_manager import create_metadata
 
 # Application Flask (optionnelle si vous voulez un endpoint HTTP)
 app = Flask(__name__)
@@ -46,6 +46,7 @@ if __name__ == '__main__':
     # Configuration d'APScheduler
     scheduler = BackgroundScheduler()
     # Planifie l'exécution de 'pipeline_etl_job' tous les jours à 00:00
+
     scheduler.add_job(pipeline_etl_job, 'cron', hour=0, minute=0, id='daily_etl')
     scheduler.start()
 
