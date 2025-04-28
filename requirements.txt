@@ -11,3 +11,7 @@ ace_tools
 flask
 apscheduler
 BackgroundScheduler
+torch
+torchvision
+sqlalchemy
+pymysql
