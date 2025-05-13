@@ -10,3 +10,7 @@ http://localhost:8090/api/getmetadata/5
 http://localhost:3001/  
 
 admin admin lors de la première connexion sur Grafana
+
+-m venv .venv
+source .venv/bin/activate   
+mammal track
