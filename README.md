@@ -2,8 +2,8 @@
 ### Cédric Sanchez - Valentin Fiess - Jason TCHAGA - Louis GARDET ###
 
 ### Mise en place du projet
-git pull https://github.com/CedricSanchezGithub/ETL/edit/reorganisation 
-docker compose up  
+git pull https://github.com/CedricSanchezGithub/ETL/edit/reorganisation   
+docker compose up   
 -m venv .venv  
 source .venv/bin/activate   
 
