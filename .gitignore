@@ -2,8 +2,10 @@
 ETL/data/dataset_img/*
 ETL/.output/data/nettoye.parquet/
 ETL/.output/data/nettoye.csv/
-ETL/ressource
-
+ETL/ressource/*
+# Ignorer les fichiers de données
+ETL/data/OpenAnimalTracks/*
+.env
 # Ignorer les environnements virtuels
 .venv/
 venv/
