@@ -10,3 +10,5 @@ python-dotenv
 ace_tools
 diagrams
 graphviz
+apscheduler
+pymysql

@@ -1,11 +1,14 @@
 from flask import Blueprint, render_template, send_from_directory
 import pymysql
 from flask import request, jsonify
+import os
+import datetime
 
 from ETL.metadata_manager import create_metadata
 from ETL.notebook_to_python import main_function
 
 api = Blueprint('api', __name__)
+photo_save = "Backend/static/photo_save"
 
 @api.route('/')
 def index():
@@ -134,3 +137,35 @@ def get_all_metadata():
 @api.route('/interface')
 def interface():
     return render_template('interface.html')
+
+@api.route('/photo_download', methods=['POST'])
+def photo_download():
+    # Vérifier si un fichier est présent dans la requête
+    if 'file' not in request.files:
+        return jsonify({'error': 'Aucun fichier trouvé'}), 400
+    
+    file = request.files['file']
+
+    # Vérifier si un fichier a été sélectionné
+    if file.filename == '':
+        return jsonify({'error': 'Aucun fichier sélectionné'}), 400
+    
+    # Vérifier l'extension du fichier
+    allowed_extensions = {'jpg', 'jpeg', 'png'}
+    if '.' not in file.filename or file.filename.rsplit('.', 1)[1].lower() not in allowed_extensions:
+        return jsonify({'error': 'Type de fichier non autorisé'}), 400
+    
+    # Créer un nom de fichier avec timestamp pour éviter les doublons
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    file_extension = file.filename.rsplit('.', 1)[1].lower()
+    filename = f"wildlens_{timestamp}.{file_extension}"
+
+    # Enregistrer le fichier
+    file_path = os.path.join(photo_save, filename)
+    file.save(file_path)
+
+    return jsonify({
+        'success': True,
+        'message': 'Image enregistrée avec succès',
+        'filename': filename
+    })

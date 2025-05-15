@@ -1,19 +1,23 @@
 # MSPR 2024 - 2025
+
 ### Cédric Sanchez - Valentin Fiess - Jason TCHAGA - Louis GARDET ###
 
 ### Mise en place du projet
+
 git pull https://github.com/CedricSanchezGithub/ETL/edit/reorganisation   
 docker compose up   
 -m venv .venv  
-source .venv/bin/activate   
+source .venv/bin/activate
 
-puis lancer main.py  
+puis lancer main.py
 
 ### Interface de Contrôle
-http://127.0.0.1:5000/interface
+
+http://127.0.0.1:5001/interface
 
 ### Grafana
-http://localhost:3001/ 
+
+http://localhost:3001/
 admin admin lors de la première connexion sur Grafana
 
 ### Backend

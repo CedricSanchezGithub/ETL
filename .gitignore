@@ -84,3 +84,8 @@ instance/
 # Ignorer les fichiers liés à l'environnement de PyCharm
 243_*_pycharm-support-libs/
 .Trash-1000/
+.ipynb_checkpoints/metadata_manager-checkpoint.ipynb
+.ipynb_checkpoints/notebook-checkpoint.ipynb
+uv.lock
+pyproject.toml
+.gitignore
