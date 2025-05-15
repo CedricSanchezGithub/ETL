@@ -10,3 +10,4 @@ python-dotenv
 ace_tools
 diagrams
 graphviz
+gunicorn

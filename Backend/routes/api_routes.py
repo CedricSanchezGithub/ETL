@@ -1,3 +1,5 @@
+from threading import Thread
+
 from flask import Blueprint, render_template, send_from_directory
 import pymysql
 from flask import request, jsonify
@@ -13,8 +15,15 @@ def index():
 
 @api.route('/triggermspr')
 def trigger_pipeline_etl():
-    main_function()
-    return "Pipeline ETL déclenché manuellement."
+    def run_pipeline():
+        try:
+            main_function()
+        except Exception as e:
+            print(f"[❌ ERREUR ETL] {e}")
+
+    Thread(target=run_pipeline).start()
+
+    return  "Pipeline ETL déclenché en arrière-plan.", 200
 
 @api.route('/triggermetadata')
 def trigger_pipeline_metadata():

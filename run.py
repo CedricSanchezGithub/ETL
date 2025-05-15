@@ -1,3 +1,4 @@
+# Pratique pour dev. Ne pas utiliser en prod.
 from Backend.scheduler import app
 
 if __name__ == "__main__":

@@ -43,3 +43,9 @@ Métadonnées
 
     GET http://127.0.0.1:5000/api/metadata
     Retourne les métadonnées complètes pour toutes les espèces.
+
+
+Pour lancer le backend en mode production, il est recommandé d'utiliser un serveur WSGI tel que Gunicorn. 
+Voici comment procéder :
+
+gunicorn -w 4 -b 127.0.0.1:8000 Backend.scheduler:app
