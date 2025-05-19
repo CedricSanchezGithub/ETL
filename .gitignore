@@ -1,8 +1,14 @@
 # Byte-compiled / optimized / DLL files
-data/dataset_img/*
-/.output/data/nettoye.parquet/
-/.output/data/nettoye.csv/
-
+ETL/data/dataset_img/*
+ETL/.output/data/nettoye.parquet/
+ETL/.output/data/nettoye.csv/
+ETL/ressource/*
+# Ignorer les fichiers de données
+ETL/data/OpenAnimalTracks/*
+.env
+# Ignorer les environnements virtuels
+.venv/
+venv/
 # Ignorer les fichiers temporaires et spécifiques à PyCharm
 .idea/
 .pynb_checkpoints/
@@ -34,7 +40,7 @@ share/python-wheels/
 MANIFEST
 
 # PyInstaller
-#  Usually these files are written by a python script from a templates
+#  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
@@ -78,3 +84,8 @@ instance/
 # Ignorer les fichiers liés à l'environnement de PyCharm
 243_*_pycharm-support-libs/
 .Trash-1000/
+.ipynb_checkpoints/metadata_manager-checkpoint.ipynb
+.ipynb_checkpoints/notebook-checkpoint.ipynb
+uv.lock
+pyproject.toml
+.gitignore
