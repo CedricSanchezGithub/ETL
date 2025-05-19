@@ -1,7 +1,7 @@
 from threading import Thread
 
-from flask import Blueprint, render_template, send_from_directory
 import pymysql
+from flask import Blueprint, render_template, send_from_directory
 from flask import request, jsonify
 
 from ETL.metadata_manager import create_metadata
@@ -9,30 +9,62 @@ from ETL.notebook_to_python import main_function
 
 api = Blueprint('api', __name__)
 
+
 @api.route('/')
 def index():
     return "APScheduler est en cours d'exécution."
 
+
 @api.route('/triggermspr')
 def trigger_pipeline_etl():
-    def run_pipeline():
-        try:
-            main_function()
-        except Exception as e:
-            print(f"[❌ ERREUR ETL] {e}")
+    try:
+        def run_pipeline():
+            try:
+                main_function()
+            except Exception as e:
+                print(f"[❌ ERREUR ETL] {e}")
 
-    Thread(target=run_pipeline).start()
+        Thread(target=run_pipeline).start()
 
-    return  "Pipeline ETL déclenché en arrière-plan.", 200
+        return jsonify({
+            "message": "✅ Pipeline ETL déclenchée avec succès.",
+            "status": "started"
+        }), 200
+
+    except Exception as e:
+        return jsonify({
+            "message": "❌ Échec du déclenchement de la pipeline.",
+            "error": str(e)
+        }), 500
+
 
 @api.route('/triggermetadata')
 def trigger_pipeline_metadata():
-    create_metadata()
-    return "Pipeline Metadata déclenché manuellement."
+    try:
+        def run_metadata():
+            try:
+                create_metadata()
+            except Exception as e:
+                print(f"[❌ ERREUR METADATA] {e}")
+
+        Thread(target=run_metadata).start()
+
+        return jsonify({
+            "message": "✅ Pipeline Metadata déclenchée avec succès.",
+            "status": "started"
+        }), 200
+
+    except Exception as e:
+        return jsonify({
+            "message": "❌ Échec du déclenchement de la pipeline Metadata.",
+            "error": str(e)
+        }), 500
+
 
 @api.route('/images/<path:filename>')
 def serve_image(filename):
     return send_from_directory('static/images/augmented_train', filename)
+
 
 @api.route('/api/images', methods=['GET'])
 def get_images_by_species():
@@ -88,6 +120,7 @@ def get_images_by_species():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
 @api.route('/api/especes', methods=['GET'])
 def get_especes():
     try:
@@ -111,6 +144,7 @@ def get_especes():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 @api.route('/api/metadata', methods=['GET'])
 def get_all_metadata():
