@@ -7,28 +7,33 @@ import datetime
 from ETL.metadata_manager import create_metadata
 from ETL.notebook_to_python import main_function
 
-api = Blueprint('api', __name__)
+api = Blueprint("api", __name__)
 photo_save = "Backend/static/photo_save"
 
-@api.route('/')
+
+@api.route("/")
 def index():
     return "APScheduler est en cours d'exécution."
 
-@api.route('/triggermspr')
+
+@api.route("/triggermspr")
 def trigger_pipeline_etl():
     main_function()
     return "Pipeline ETL déclenché manuellement."
 
-@api.route('/triggermetadata')
+
+@api.route("/triggermetadata")
 def trigger_pipeline_metadata():
     create_metadata()
     return "Pipeline Metadata déclenché manuellement."
 
-@api.route('/images/<path:filename>')
-def serve_image(filename):
-    return send_from_directory('static/images/augmented_train', filename)
 
-@api.route('/api/images', methods=['GET'])
+@api.route("/images/<path:filename>")
+def serve_image(filename):
+    return send_from_directory("static/images/augmented_train", filename)
+
+
+@api.route("/api/images", methods=["GET"])
 def get_images_by_species():
     espece = request.args.get("espece")
     if not espece:
@@ -37,12 +42,12 @@ def get_images_by_species():
     try:
         # Connexion MySQL
         conn = pymysql.connect(
-            host='localhost',
-            user='root',
-            password='root',
-            database='wildlens',
-            charset='utf8mb4',
-            cursorclass=pymysql.cursors.DictCursor
+            host="localhost",
+            user="root",
+            password="root",
+            database="wildlens",
+            charset="utf8mb4",
+            cursorclass=pymysql.cursors.DictCursor,
         )
 
         with conn.cursor() as cursor:
@@ -52,19 +57,20 @@ def get_images_by_species():
             if not metadata:
                 return jsonify({"error": f"Espèce '{espece}' introuvable"}), 404
 
-            id_espece = metadata['id_espece']
+            id_espece = metadata["id_espece"]
 
             # Obtenir les images
-            cursor.execute("SELECT image FROM wildlens_images WHERE id_espece = %s", (id_espece,))
+            cursor.execute(
+                "SELECT image FROM wildlens_images WHERE id_espece = %s", (id_espece,)
+            )
             images = cursor.fetchall()
 
         conn.close()
 
         # Construire la réponse
-        image_data = [{
-            "path": img['image'],
-            "url": f"/images/{img['image']}"
-        } for img in images]
+        image_data = [
+            {"path": img["image"], "url": f"/images/{img['image']}"} for img in images
+        ]
 
         response = {
             "espece": espece,
@@ -74,7 +80,7 @@ def get_images_by_species():
             "population_estimee": metadata.get("population_estimee"),
             "localisation": metadata.get("localisation"),
             "nombre_image": metadata.get("nombre_image"),
-            "images": image_data
+            "images": image_data,
         }
 
         return jsonify(response)
@@ -82,16 +88,17 @@ def get_images_by_species():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@api.route('/api/especes', methods=['GET'])
+
+@api.route("/api/especes", methods=["GET"])
 def get_especes():
     try:
         conn = pymysql.connect(
-            host='localhost',
-            user='root',
-            password='root',
-            database='wildlens',
-            charset='utf8mb4',
-            cursorclass=pymysql.cursors.DictCursor
+            host="localhost",
+            user="root",
+            password="root",
+            database="wildlens",
+            charset="utf8mb4",
+            cursorclass=pymysql.cursors.DictCursor,
         )
 
         with conn.cursor() as cursor:
@@ -106,16 +113,17 @@ def get_especes():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@api.route('/api/metadata', methods=['GET'])
+
+@api.route("/api/metadata", methods=["GET"])
 def get_all_metadata():
     try:
         conn = pymysql.connect(
-            host='localhost',
-            user='root',
-            password='root',
-            database='wildlens',
-            charset='utf8mb4',
-            cursorclass=pymysql.cursors.DictCursor
+            host="localhost",
+            user="root",
+            password="root",
+            database="wildlens",
+            charset="utf8mb4",
+            cursorclass=pymysql.cursors.DictCursor,
         )
 
         with conn.cursor() as cursor:
@@ -134,38 +142,44 @@ def get_all_metadata():
         return jsonify({"error": str(e)}), 500
 
 
-@api.route('/interface')
+@api.route("/interface")
 def interface():
-    return render_template('interface.html')
+    return render_template("interface.html")
 
-@api.route('/photo_download', methods=['POST'])
+
+@api.route("/photo_download", methods=["POST"])
 def photo_download():
     # Vérifier si un fichier est présent dans la requête
-    if 'file' not in request.files:
-        return jsonify({'error': 'Aucun fichier trouvé'}), 400
-    
-    file = request.files['file']
+    if "file" not in request.files:
+        return jsonify({"error": "Aucun fichier trouvé"}), 400
+
+    file = request.files["file"]
 
     # Vérifier si un fichier a été sélectionné
-    if file.filename == '':
-        return jsonify({'error': 'Aucun fichier sélectionné'}), 400
-    
+    if file.filename == "":
+        return jsonify({"error": "Aucun fichier sélectionné"}), 400
+
     # Vérifier l'extension du fichier
-    allowed_extensions = {'jpg', 'jpeg', 'png'}
-    if '.' not in file.filename or file.filename.rsplit('.', 1)[1].lower() not in allowed_extensions:
-        return jsonify({'error': 'Type de fichier non autorisé'}), 400
-    
+    allowed_extensions = {"jpg", "jpeg", "png"}
+    if (
+        "." not in file.filename
+        or file.filename.rsplit(".", 1)[1].lower() not in allowed_extensions
+    ):
+        return jsonify({"error": "Type de fichier non autorisé"}), 400
+
     # Créer un nom de fichier avec timestamp pour éviter les doublons
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    file_extension = file.filename.rsplit('.', 1)[1].lower()
+    file_extension = file.filename.rsplit(".", 1)[1].lower()
     filename = f"wildlens_{timestamp}.{file_extension}"
 
     # Enregistrer le fichier
     file_path = os.path.join(photo_save, filename)
     file.save(file_path)
 
-    return jsonify({
-        'success': True,
-        'message': 'Image enregistrée avec succès',
-        'filename': filename
-    })
+    return jsonify(
+        {
+            "success": True,
+            "message": "Image enregistrée avec succès",
+            "filename": filename,
+        }
+    )

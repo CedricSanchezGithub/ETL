@@ -1,19 +1,24 @@
-#%% md
+# %% md
 # # Gestion des métadonnées des espèces
-# 
+#
 # Nous scannons les dossiers disponibles afin d'en faire un dataframe et réutiliser ces informations.
 #  Puis nous récupérons les métadonnées depuis l'API Mistral grâce à un prompt optimisé (optimisation du grounding, du prompt engineering)
 #  un sleep de 3s a été ajouté afin d'éviter de trop spam l'API
-#%%
+# %%
 import pandas as pd
 import os
 from dotenv import load_dotenv
 from mistralai import Mistral
 import time
 
+
 def create_metadata():
-    #%%
-    folder_all_animals = [d for d in os.listdir("ressource/image/train") if os.path.isdir(os.path.join("ressource/image/train", d))]
+    # %%
+    folder_all_animals = [
+        d
+        for d in os.listdir("ressource/image/train")
+        if os.path.isdir(os.path.join("ressource/image/train", d))
+    ]
     df_all_animals = pd.DataFrame(folder_all_animals, columns=["Nom du dossier"])
 
     # Charger les variables d'environnement
@@ -25,7 +30,9 @@ def create_metadata():
 
     api_key = os.environ.get("API_KEY")
     if not api_key:
-        raise ValueError("La clé API n'est pas définie dans les variables d'environnement.")
+        raise ValueError(
+            "La clé API n'est pas définie dans les variables d'environnement."
+        )
 
     model = "open-mistral-nemo"
 
@@ -40,7 +47,6 @@ def create_metadata():
     donnees_animaux = []
 
     for index, animal in enumerate(df_all_animals["Nom du dossier"]):
-
         reste_a_scanner = total_animaux - (index + 1)
 
         print(f"Il reste {reste_a_scanner} animaux à scanner")
@@ -75,8 +81,7 @@ def create_metadata():
 
         try:
             chat_response = client.chat.complete(
-                model=model,
-                messages=[{"role": "user", "content": prompt}]
+                model=model, messages=[{"role": "user", "content": prompt}]
             )
 
             # Extraire la réponse
@@ -90,7 +95,8 @@ def create_metadata():
                     cle, valeur = ligne.split(":", 1)
                     informations[cle.strip()] = valeur.strip()
 
-            print("Informations extraites :", informations)  # Ajouté pour le débogage
+            # Ajouté pour le débogage
+            print("Informations extraites :", informations)
 
             # Ajouter les informations à la liste
             donnees_animaux.append(informations)
@@ -104,7 +110,6 @@ def create_metadata():
 
     # Création du DataFrame
     df_animaux = pd.DataFrame(donnees_animaux)
-
 
     # Sauvegarde dans un CSV
     df_animaux.to_csv(fichier_csv, index=False)

@@ -1,10 +1,10 @@
-#%% md
+# %% md
 # # Gestion des métadonnées des espèces
-# 
+#
 # Nous scannons les dossiers disponibles afin d'en faire un dataframe et réutiliser ces informations.
 # Puis nous récupérons les métadonnées depuis l'API Mistral et Gemini, comparons leurs résultats pour réduire les erreurs potentielles, et créons un CSV final optimisé.
 # Un sleep de 3s a été ajouté afin d'éviter de trop spam les APIs.
-#%%
+# %%
 import json
 import os
 import random
@@ -15,10 +15,14 @@ import pandas as pd
 from dotenv import load_dotenv
 from google import genai
 from mistralai import Mistral
-#%%
+
+# %%
 # Scanner les dossiers d'animaux
-folder_all_animals = [d for d in os.listdir("ressource/image/train") if
-                      os.path.isdir(os.path.join("ressource/image/train", d))]
+folder_all_animals = [
+    d
+    for d in os.listdir("ressource/image/train")
+    if os.path.isdir(os.path.join("ressource/image/train", d))
+]
 df_all_animals = pd.DataFrame(folder_all_animals, columns=["Nom du dossier"])
 
 # Charger les variables d'environnement
@@ -27,15 +31,19 @@ load_dotenv()
 # Nombre total d'animaux à scanner
 total_animaux = len(df_all_animals)
 reste_a_scanner = total_animaux
-#%%
+# %%
 # Récupération des clés API
 mistral_api_key = os.environ.get("mistral_api_key")
 if not mistral_api_key:
-    raise ValueError("La clé API Mistral n'est pas définie dans les variables d'environnement.")
+    raise ValueError(
+        "La clé API Mistral n'est pas définie dans les variables d'environnement."
+    )
 
 gemini_api_key = os.environ.get("gemini_api_key")
 if not gemini_api_key:
-    raise ValueError("La clé API gemini n'est pas définie dans les variables d'environnement.")
+    raise ValueError(
+        "La clé API gemini n'est pas définie dans les variables d'environnement."
+    )
 
 # Configuration des modèles
 mistral_model = "open-mistral-nemo"
@@ -44,7 +52,7 @@ gemini_model = "gemini-2.0-flash"
 # Initialisation des clients
 mistral_client = Mistral(api_key=mistral_api_key)
 gemini_client = genai.Client(api_key=gemini_api_key)
-#%%
+# %%
 # Chemins des fichiers CSV
 fichier_csv_mistral = "ressource/metadata_mistral.csv"
 fichier_csv_gemini = "ressource/metadata_gemini.csv"
@@ -52,7 +60,12 @@ fichier_csv_comparaison = "ressource/metadata_comparaison.csv"
 fichier_csv_final = "ressource/metadata_final.csv"
 
 # Supprimer les fichiers s'ils existent déjà
-for fichier in [fichier_csv_mistral, fichier_csv_gemini, fichier_csv_comparaison, fichier_csv_final]:
+for fichier in [
+    fichier_csv_mistral,
+    fichier_csv_gemini,
+    fichier_csv_comparaison,
+    fichier_csv_final,
+]:
     if os.path.exists(fichier):
         os.remove(fichier)
 
@@ -61,7 +74,9 @@ donnees_animaux_mistral = []
 donnees_animaux_gemini = []
 donnees_animaux_final = []
 comparaisons = []
-#%%
+
+
+# %%
 # Fonction améliorée pour faire un appel à l'API avec gestion de toutes les erreurs
 def make_api_call_with_retry(client, model, messages, max_retries=5, initial_delay=5):
     for attempt in range(max_retries):
@@ -69,8 +84,10 @@ def make_api_call_with_retry(client, model, messages, max_retries=5, initial_del
             # Ajouter un délai exponentiel avec un peu d'aléatoire
             if attempt > 0:
                 # Délai plus long pour les tentatives supplémentaires
-                delay = initial_delay * (2 ** attempt) + random.uniform(0, 2)
-                print(f"⏳ Tentative {attempt + 1}/{max_retries} - Attente de {delay:.1f} secondes...")
+                delay = initial_delay * (2**attempt) + random.uniform(0, 2)
+                print(
+                    f"⏳ Tentative {attempt + 1}/{max_retries} - Attente de {delay:.1f} secondes..."
+                )
                 time.sleep(delay)
 
             # Timestamp pour le log
@@ -93,15 +110,19 @@ def make_api_call_with_retry(client, model, messages, max_retries=5, initial_del
 
     # Ce code ne devrait jamais être atteint car on lève l'exception à la dernière tentative
     raise Exception(f"Échec après {max_retries} tentatives")
-#%%
+
+
+# %%
 # Fonction pour faire un appel à l'API Gemini avec retry
 def make_gemini_call_with_retry(client, model, prompt, max_retries=5, initial_delay=5):
     for attempt in range(max_retries):
         try:
             # Ajouter un délai exponentiel si ce n'est pas la première tentative
             if attempt > 0:
-                delay = initial_delay * (2 ** attempt) + random.uniform(0, 2)
-                print(f"⏳ Tentative Gemini {attempt + 1}/{max_retries} - Attente de {delay:.1f} secondes...")
+                delay = initial_delay * (2**attempt) + random.uniform(0, 2)
+                print(
+                    f"⏳ Tentative Gemini {attempt + 1}/{max_retries} - Attente de {delay:.1f} secondes..."
+                )
                 time.sleep(delay)
 
             # Timestamp pour le log
@@ -109,14 +130,13 @@ def make_gemini_call_with_retry(client, model, prompt, max_retries=5, initial_de
             print(f"[{timestamp}] Appel API Gemini - Tentative {attempt + 1}")
 
             # Faire l'appel à l'API Gemini
-            response = client.models.generate_content(
-                model=model,
-                contents=prompt
-            )
+            response = client.models.generate_content(model=model, contents=prompt)
             return response
         except Exception as e:
             error_type = "Indisponibilité" if "503" in str(e) else "API"
-            print(f"⚠️ Gemini {error_type} erreur (tentative {attempt + 1}/{max_retries}): {e}")
+            print(
+                f"⚠️ Gemini {error_type} erreur (tentative {attempt + 1}/{max_retries}): {e}"
+            )
 
             # Si c'est la dernière tentative, lever l'exception
             if attempt == max_retries - 1:
@@ -124,15 +144,21 @@ def make_gemini_call_with_retry(client, model, prompt, max_retries=5, initial_de
 
     # Ce code ne devrait jamais être atteint
     raise Exception(f"Échec après {max_retries} tentatives avec Gemini")
-#%%
-folder_all_animals = [d for d in os.listdir("ressource/image/train") if
-                      os.path.isdir(os.path.join("ressource/image/train", d))]
+
+
+# %%
+folder_all_animals = [
+    d
+    for d in os.listdir("ressource/image/train")
+    if os.path.isdir(os.path.join("ressource/image/train", d))
+]
 df_all_animals = pd.DataFrame(folder_all_animals, columns=["Nom du dossier"])
 
 # Nombre total d'animaux à scanner
 total_animaux = len(df_all_animals)
 
-#%%
+
+# %%
 def get_animal_info(animal):
     prompt = f"""
             En français, donne-moi les informations suivantes sur {animal} :
@@ -167,7 +193,7 @@ def get_animal_info(animal):
         chat_response_mistral = make_api_call_with_retry(
             client=mistral_client,
             model=mistral_model,
-            messages=[{"role": "user", "content": prompt}]
+            messages=[{"role": "user", "content": prompt}],
         )
         reponse_mistral = chat_response_mistral.choices[0].message.content
         print("Réponse Mistral reçue")
@@ -177,9 +203,7 @@ def get_animal_info(animal):
 
         # Réponse avec Gemini
         response = make_gemini_call_with_retry(
-            client=gemini_client,
-            model=gemini_model,
-            prompt=prompt
+            client=gemini_client, model=gemini_model, prompt=prompt
         )
         reponse_gemini = response.text
         print("Réponse Gemini reçue")
@@ -202,7 +226,9 @@ def get_animal_info(animal):
     except Exception as e:
         print(f"Erreur lors de la récupération des infos pour {animal} : {e}")
         return None, None
-#%%
+
+
+# %%
 def compare_results(animal, informations_mistral, informations_gemini):
     try:
         prompt_comparaison = f"""
@@ -245,7 +271,7 @@ def compare_results(animal, informations_mistral, informations_gemini):
         comparaison_response = make_api_call_with_retry(
             client=mistral_client,
             model=mistral_model,
-            messages=[{"role": "user", "content": prompt_comparaison}]
+            messages=[{"role": "user", "content": prompt_comparaison}],
         )
         reponse_comparaison = comparaison_response.choices[0].message.content
 
@@ -270,33 +296,56 @@ def compare_results(animal, informations_mistral, informations_gemini):
                         informations_final[cle.strip()] = valeur.strip()
         else:
             # Si pas de section finale, utiliser les métadonnées de Mistral par défaut
-            informations_final = {k: v for k, v in informations_mistral.copy().items() if k != "ERREUR"}
+            informations_final = {
+                k: v for k, v in informations_mistral.copy().items() if k != "ERREUR"
+            }
 
         # Vérifier que toutes les colonnes requises sont présentes
-        colonnes_requises = ["Espèce anglais", "Espèce français", "Famille", "Nom latin",
-                             "Description", "Population estimée", "Localisation"]
+        colonnes_requises = [
+            "Espèce anglais",
+            "Espèce français",
+            "Famille",
+            "Nom latin",
+            "Description",
+            "Population estimée",
+            "Localisation",
+        ]
 
         for colonne in colonnes_requises:
-            if colonne not in informations_final or not informations_final[colonne] or informations_final[
-                colonne].upper() == "ERREUR":
+            if (
+                colonne not in informations_final
+                or not informations_final[colonne]
+                or informations_final[colonne].upper() == "ERREUR"
+            ):
                 # Au lieu d'indiquer ERREUR, utiliser une valeur par défaut significative
                 if colonne == "Espèce anglais":
                     informations_final[colonne] = animal
                 elif colonne == "Population estimée":
                     informations_final[colonne] = "0"  # Valeur numérique par défaut
                 else:
-                    informations_final[colonne] = f"Information non disponible pour {animal}"
+                    informations_final[colonne] = (
+                        f"Information non disponible pour {animal}"
+                    )
 
         return reponse_comparaison, informations_final
 
     except Exception as e:
         print(f"Erreur lors de la comparaison pour {animal}: {e}")
         # Créer un dictionnaire sans la clé ERREUR
-        informations_final = {k: v for k, v in informations_mistral.copy().items() if k != "ERREUR"}
+        informations_final = {
+            k: v for k, v in informations_mistral.copy().items() if k != "ERREUR"
+        }
 
         # Garantir que toutes les colonnes requises sont présentes
-        colonnes_requises = ["Espèce anglais", "Espèce français", "Famille", "Nom latin",
-                             "Description", "Population estimée", "Localisation"]
+        colonnes_requises = [
+            "Espèce anglais",
+            "Espèce français",
+            "Famille",
+            "Nom latin",
+            "Description",
+            "Population estimée",
+            "Localisation",
+        ]
 
         for colonne in colonnes_requises:
             if colonne not in informations_final or not informations_final[colonne]:
@@ -305,10 +354,14 @@ def compare_results(animal, informations_mistral, informations_gemini):
                 elif colonne == "Population estimée":
                     informations_final[colonne] = "0"
                 else:
-                    informations_final[colonne] = f"Information non disponible pour {animal}"
+                    informations_final[colonne] = (
+                        f"Information non disponible pour {animal}"
+                    )
 
         return f"Erreur: {str(e)}", informations_final
-#%%
+
+
+# %%
 # Traitement des animaux
 for index, animal in enumerate(df_all_animals["Nom du dossier"]):
     reste_a_scanner = total_animaux - (index + 1)
@@ -318,8 +371,12 @@ for index, animal in enumerate(df_all_animals["Nom du dossier"]):
         # Sauvegarde intermédiaire tous les 5 animaux ou à la fin
         if index % 5 == 0 or index == total_animaux - 1:
             # Sauvegarde intermédiaire
-            print(f"💾 Sauvegarde intermédiaire des données (animal {index + 1}/{total_animaux})...")
-            pd.DataFrame(donnees_animaux_final).to_csv(f"ressource/metadata_final_intermediate.csv", index=False)
+            print(
+                f"💾 Sauvegarde intermédiaire des données (animal {index + 1}/{total_animaux})..."
+            )
+            pd.DataFrame(donnees_animaux_final).to_csv(
+                "ressource/metadata_final_intermediate.csv", index=False
+            )
 
         # Reste du code de traitement
         informations_mistral, informations_gemini = get_animal_info(animal)
@@ -333,7 +390,9 @@ for index, animal in enumerate(df_all_animals["Nom du dossier"]):
             comparaison = {"Espèce": animal, "Différences": []}
 
             # Comparer les résultats
-            reponse_comparaison, informations_final = compare_results(animal, informations_mistral, informations_gemini)
+            reponse_comparaison, informations_final = compare_results(
+                animal, informations_mistral, informations_gemini
+            )
             comparaison["Différences"] = reponse_comparaison
             comparaisons.append(comparaison)
             donnees_animaux_final.append(informations_final)
@@ -346,13 +405,13 @@ for index, animal in enumerate(df_all_animals["Nom du dossier"]):
                 "Nom latin": f"Information non disponible pour {animal}",
                 "Description": f"Information non disponible pour {animal}",
                 "Population estimée": "0",
-                "Localisation": f"Information non disponible pour {animal}"
+                "Localisation": f"Information non disponible pour {animal}",
             }
             donnees_animaux_final.append(informations_final)
 
     except Exception as e:
         print(f"🔴 Erreur majeure lors du traitement de {animal}: {e}")
-        print(f"Sauvegarde d'urgence et passage à l'animal suivant...")
+        print("Sauvegarde d'urgence et passage à l'animal suivant...")
 
         # Ajouter une entrée d'erreur
         informations_final = {
@@ -360,14 +419,16 @@ for index, animal in enumerate(df_all_animals["Nom du dossier"]):
             "Espèce français": f"Erreur de traitement - {str(e)[:50]}",
             "Famille": f"Information non disponible pour {animal}",
             "Nom latin": f"Information non disponible pour {animal}",
-            "Description": f"Erreur lors du traitement de cet animal",
+            "Description": "Erreur lors du traitement de cet animal",
             "Population estimée": "0",
-            "Localisation": f"Information non disponible pour {animal}"
+            "Localisation": f"Information non disponible pour {animal}",
         }
         donnees_animaux_final.append(informations_final)
 
         # Sauvegarde d'urgence
-        pd.DataFrame(donnees_animaux_final).to_csv(f"ressource/metadata_final_emergency.csv", index=False)
+        pd.DataFrame(donnees_animaux_final).to_csv(
+            "ressource/metadata_final_emergency.csv", index=False
+        )
 
         # Pause plus longue après une erreur
         print("⏳ Attente de 5 secondes après erreur...")
@@ -378,15 +439,29 @@ for index, animal in enumerate(df_all_animals["Nom du dossier"]):
     print("⏳ Attente de 3 secondes avant la prochaine requête...")
     time.sleep(3)  # Nettoyage final des données avant création du DataFrame
 # Nettoyage final des données avant création du DataFrame
-colonnes_a_conserver = ["Espèce anglais", "Espèce français", "Famille", "Nom latin",
-                        "Description", "Population estimée", "Localisation"]
+colonnes_a_conserver = [
+    "Espèce anglais",
+    "Espèce français",
+    "Famille",
+    "Nom latin",
+    "Description",
+    "Population estimée",
+    "Localisation",
+]
 
 
 # Fonction pour fusionner les informations des colonnes normales et étoilées
 def fusionner_donnees(row, animal):
     resultat = {}
-    colonnes_a_conserver = ["Espèce anglais", "Espèce français", "Famille", "Nom latin",
-                            "Description", "Population estimée", "Localisation"]
+    colonnes_a_conserver = [
+        "Espèce anglais",
+        "Espèce français",
+        "Famille",
+        "Nom latin",
+        "Description",
+        "Population estimée",
+        "Localisation",
+    ]
 
     for col in colonnes_a_conserver:
         # Initialiser la colonne avec une valeur par défaut
@@ -413,7 +488,7 @@ def fusionner_donnees(row, animal):
                 resultat[col] = "0"
             else:
                 # Supprimer les espaces et caractères non numériques
-                resultat[col] = ''.join(filter(str.isdigit, str(resultat[col])))
+                resultat[col] = "".join(filter(str.isdigit, str(resultat[col])))
                 if not resultat[col]:
                     resultat[col] = "0"
 
@@ -429,10 +504,12 @@ for donnee in donnees_animaux_final:
 
 # Création du DataFrame final avec uniquement les colonnes souhaitées
 df_animaux_final = pd.DataFrame(donnees_animaux_final_fusionnees)
-df_animaux_final = df_animaux_final[colonnes_a_conserver]  # Garantir l'ordre des colonnes
+df_animaux_final = df_animaux_final[
+    colonnes_a_conserver
+]  # Garantir l'ordre des colonnes
 
 # Pour s'assurer qu'il n'y a pas de colonnes avec astérisques dans le DataFrame final
-colonnes_filtrees = [col for col in df_animaux_final.columns if not col.startswith('*')]
+colonnes_filtrees = [col for col in df_animaux_final.columns if not col.startswith("*")]
 df_animaux_final = df_animaux_final[colonnes_filtrees]
 
 # Supprimer le fichier s'il existe déjà pour éviter l'ajout de colonnes
@@ -440,11 +517,14 @@ if os.path.exists(fichier_csv_final):
     os.remove(fichier_csv_final)
 
 # Sauvegarde du CSV final (avec mode='w' pour s'assurer de réécrire le fichier)
-df_animaux_final.to_csv(fichier_csv_final, index=False, mode='w')
+df_animaux_final.to_csv(fichier_csv_final, index=False, mode="w")
 print(f"✅ Fichier final créé avec succès : {fichier_csv_final}")
-#%%
+# %%
 # Supprimer les fichiers intermédiaires
-fichiers_intermediaires = ["ressource/metadata_final_intermediate.csv", "ressource/metadata_final_emergency.csv"]
+fichiers_intermediaires = [
+    "ressource/metadata_final_intermediate.csv",
+    "ressource/metadata_final_emergency.csv",
+]
 for fichier in fichiers_intermediaires:
     if os.path.exists(fichier):
         try:
@@ -452,7 +532,7 @@ for fichier in fichiers_intermediaires:
             print(f"✅ Fichier intermédiaire supprimé : {fichier}")
         except Exception as e:
             print(f"⚠️ Impossible de supprimer {fichier}: {e}")
-#%%
+# %%
 # Création des DataFrames
 df_animaux_mistral = pd.DataFrame(donnees_animaux_mistral)
 df_animaux_gemini = pd.DataFrame(donnees_animaux_gemini)
@@ -478,7 +558,7 @@ df_animaux_gemini.to_csv(fichier_csv_gemini, index=False)
 df_comparaisons.to_csv(fichier_csv_comparaison, index=False)
 df_animaux_final.to_csv(fichier_csv_final, index=False)
 
-print(f"Les résultats ont été enregistrés dans les fichiers suivants:")
+print("Les résultats ont été enregistrés dans les fichiers suivants:")
 print(f" - {fichier_csv_mistral}")
 print(f" - {fichier_csv_gemini}")
 print(f" - {fichier_csv_comparaison}")
