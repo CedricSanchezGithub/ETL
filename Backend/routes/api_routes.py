@@ -89,7 +89,7 @@ def get_images_by_species():
 
         with conn.cursor() as cursor:
             # Obtenir les métadonnées de l’espèce
-            cursor.execute("SELECT * FROM wildlens_facts WHERE nom_en = %s", (espece,))
+            cursor.execute("SELECT * FROM wildlens_facts WHERE nom_fr = %s", (espece,))
             metadata = cursor.fetchone()
             if not metadata:
                 return jsonify({"error": f"Espèce '{espece}' introuvable"}), 404
