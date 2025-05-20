@@ -1,3 +1,5 @@
+from threading import Thread
+
 from flask import Blueprint, render_template, send_from_directory
 import pymysql
 from flask import request, jsonify
@@ -16,16 +18,51 @@ def index():
     return "APScheduler est en cours d'exécution."
 
 
-@api.route("/triggermspr")
+@api.route('/triggermspr')
 def trigger_pipeline_etl():
-    main_function()
-    return "Pipeline ETL déclenché manuellement."
+    try:
+        def run_pipeline():
+            try:
+                main_function()
+            except Exception as e:
+                print(f"[❌ ERREUR ETL] {e}")
+
+        Thread(target=run_pipeline).start()
+
+        return jsonify({
+            "message": "✅ Pipeline ETL déclenchée avec succès.",
+            "status": "started"
+        }), 200
+
+    except Exception as e:
+        return jsonify({
+            "message": "❌ Échec du déclenchement de la pipeline.",
+            "error": str(e)
+        }), 500
 
 
-@api.route("/triggermetadata")
+@api.route('/triggermetadata')
 def trigger_pipeline_metadata():
-    create_metadata()
-    return "Pipeline Metadata déclenché manuellement."
+    try:
+        def run_metadata():
+            try:
+                create_metadata()
+            except Exception as e:
+                print(f"[❌ ERREUR METADATA] {e}")
+
+        Thread(target=run_metadata).start()
+
+        return jsonify({
+            "message": "✅ Pipeline Metadata déclenchée avec succès.",
+            "status": "started"
+        }), 200
+
+    except Exception as e:
+        return jsonify({
+            "message": "❌ Échec du déclenchement de la pipeline Metadata.",
+            "error": str(e)
+        }), 500
+
 
 
 @api.route("/images/<path:filename>")
@@ -102,12 +139,12 @@ def get_especes():
         )
 
         with conn.cursor() as cursor:
-            cursor.execute("SELECT nom_en FROM wildlens_facts ORDER BY nom_en ASC")
+            cursor.execute("SELECT nom_fr FROM wildlens_facts ORDER BY nom_fr ASC")
             rows = cursor.fetchall()
 
         conn.close()
 
-        especes = [row["nom_en"] for row in rows]
+        especes = [row["nom_fr"] for row in rows]
         return jsonify({"especes": especes})
 
     except Exception as e:
