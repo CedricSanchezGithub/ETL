@@ -8,7 +8,5 @@ jupyterlab
 mistralai
 python-dotenv
 ace_tools
-diagrams
-graphviz
-apscheduler
-pymysql
+albumentations
+ToTensorV2

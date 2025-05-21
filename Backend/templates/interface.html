@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interface ETL - Dark Mode</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div id="div_principale">
+
+    <h1>Interface de Contrôle ETL</h1>
+
+    <button onclick="triggerETL()">Déclencher le Pipeline ETL</button>
+    <button onclick="triggerMetadata()">Déclencher les Métadonnées</button>
+
+    <p id="status"></p>
+</div>
+
+<div id="galerie">
+    <h2>Images de l'espèce : <span id="espece-nom"></span></h2>
+
+    <label for="select-espece">Choisir une espèce :</label>
+    <select id="select-espece" onchange="changerEspece()"></select>
+
+    <div id="images-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px;"></div>
+</div>
+
+<script>
+    async function chargerListeEspeces() {
+        const response = await fetch('/api/especes');
+        const data = await response.json();
+
+        const select = document.getElementById('select-espece');
+        select.innerHTML = ''; // reset
+
+        data.especes.forEach(espece => {
+            const option = document.createElement('option');
+            option.value = espece;
+            option.textContent = espece;
+            select.appendChild(option);
+        });
+
+        // Charger la première espèce par défaut
+        if (data.especes.length > 0) {
+            chargerImagesEspece(data.especes[0]);
+        }
+    }
+
+    function changerEspece() {
+        const espece = document.getElementById('select-espece').value;
+        chargerImagesEspece(espece);
+    }
+
+    async function chargerImagesEspece(espece) {
+        const response = await fetch(`/api/images?espece=${espece}`);
+        const data = await response.json();
+
+        const container = document.getElementById('images-container');
+        const nomEspece = document.getElementById('espece-nom');
+
+        container.innerHTML = '';
+        nomEspece.textContent = espece;
+
+        if (data.error) {
+            container.innerHTML = `<p style="color:red;">${data.error}</p>`;
+            return;
+        }
+
+        data.images.forEach(img => {
+            const el = document.createElement('img');
+            el.src = img.url;
+            el.alt = img.path;
+            el.style.width = '150px';
+            el.style.borderRadius = '8px';
+            container.appendChild(el);
+        });
+    }
+
+    // Lancer au chargement
+    chargerListeEspeces();
+</script>
+
+
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

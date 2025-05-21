@@ -1,19 +1,19 @@
 Espèce anglais,Espèce français,Famille,Nom latin,Description,Population estimée,Localisation
-beaver,Castor,Castoridae,Castor canadensis,Le castor est un rongeur semi-aquatique connu pour sa capacité à construire des barrages.,60000000,Canada États-Unis Russie
-black_bear,Ours noir,Ursidae,Ursus americanus,"L'ours noir est un ours de taille moyenne, caractérisé par sa robe noire et sa langue rouge.",900000,Canada États-Unis Mexique
+turkey,Dinde,Phasianidae,Meleagris gallopavo,"Oiseau de grande taille au plumage coloré, originaire d'Amérique du Nord.",550000000,États-Unis Mexique
+mouse,souris,Muridae,Mus musculus,"Petite souris grise aux longues moustaches, vivant dans les habitats humains.",500000000,"France, Royaume-Uni, États-Unis"
+horse,cheval,équidés,Equus ferus caballus,"Mammifère quadrupède au corps puissant, au cou long et à la tête relativement petite, avec une crinière et une queue fournies.",58000000,"France, États-Unis, Russie, Chine, Brésil, Mexique, Argentine"
+gray_fox,Renard gris,Canidae,Urocyon cinereoargenteus,"Le renard gris est un petit canidé aux poils gris argenté avec des reflets roux, doté d'une queue touffue et de grandes oreilles.",5000000,États-Unis Mexique
+goose,Oie,Anatidae,Anser anser,"L'oie est un grand oiseau aquatique au plumage gris-brun, avec un cou et un coude longs et un bec large et plat.",2500000,"Europe, Asie, Afrique du Nord"
+mink,vison,Mustelidae,Neogale vison,"Petit mammifère semi-aquatique au pelage brun-roux, avec une queue longue et fine.",1000000,États-Unis Canada Russie
+coyote,Coyote,Canidae,Canis latrans,"Le coyote est un canidé de taille moyenne, avec une fourrure grise ou brune, une queue touffue et des oreilles pointues.",3000000,États-Unis Canada Mexique
 bob_cat,Chat domestique,Felidae,Felis catus,Petit félin domestique au pelage court et aux yeux verts.,600000000,France États-Unis Chine Japon
-coyote,Coyote,Canidae,Canis latrans,Le coyote est un petit canidé sauvage aux oreilles pointues et à la queue touffue.,3000000,États-Unis Canada Mexique
-elephant,éléphant,Proboscidés,Loxodonta africana,"L'éléphant d'Afrique est le plus grand mammifère terrestre, reconnaissable à sa trompe et à ses grandes oreilles.",415000,"Afrique du Sud, Botswana, Zimbabwe, Mozambique, Namibie, Zambie, Malawi, Tanzanie, Kenya, Ouganda, République démocratique du Congo, Angola, République centrafricaine, Cameroun, Guinée équatoriale, Gabon, République du Congo, Sierra Leone, Liberia, Côte d'Ivoire, Ghana, Guinée, Mali, Niger, Sénégal, Burkina Faso, Tchad, Éthiopie, Somalie, Afrique du Sud, Swaziland, Lesotho, Madagascar"
-goose,oie,Anatidae,Anser anser,"L'oie est un grand oiseau aquatique au plumage blanc ou gris, avec un cou et un cou long cou.",2500000,"Europe, Asie, Afrique"
-gray_fox,Renard gris,Canidae,Urocyon cinereoargenteus,Le renard gris est un petit canidé aux poils gris argenté avec des taches noires sur les oreilles et le bout de la queue.,4000000,États-Unis Mexique Canada
-horse,cheval,Equidae,Equus ferus caballus,"Mammifère quadrupède au corps robuste, au cou long et à la tête relativement petite, doté d'une longue crinière et d'une queue touffue.",58000000,France États-Unis Chine Russie
-lion,lion,Felidae,Panthera leo,"Le lion est un grand félin d'Afrique et d'Asie, caractérisé par sa crinière et sa couleur dorée.",23000,"Afrique, Inde"
-mink,Vison d'Europe,Mustelidae,Neogale vison,"Petit mammifère semi-aquatique au pelage brun-roux, avec une queue longue et fine.",1000000,États-Unis Canada Russie
-mouse,souris,Muridae,Mus musculus,"Petit rongeur avec de grandes oreilles et une queue nue, vivant dans divers habitats.",7000000000,"France, Royaume-Uni, États-Unis"
-muledeer,orignal,Cervidae,Odocoileus hemionus,"L'orignal est un grand cervidé au pelage brun-rouge, avec des bois impressionnants.",1000000,États-Unis Canada
-otter,loutres,Mustelidae,Lutra lutra,"Les loutres sont des mammifères semi-aquatiques caractérisés par leur corps fusiforme, leur fourrure dense et leur queue musclée.",300000,Royaume-Uni France
-raccoon,raton laveur,Procyonidae,Procyon lotor,"Mammifère nocturne au masque noir et à la queue annelée, connu pour son agilité et son intelligence.",43000000,Canada États-Unis Mexique
-rat,rat,Muridae,Rattus norvegicus,"Petit mammifère nocturnal aux longues griffes et à la queue nue, vivant en colonies.",600000000,"Chine, Inde, Japon"
-skunk,putois,Mustelidae,Mephitis mephitis,Le skunk est un petit mammifère nocturne connu pour son odeur nauséabonde utilisée pour se défendre.,3000000,États-Unis Canada
-turkey,Dinde,Phasianidae,Meleagris gallopavo,Oiseau de grande taille avec une queue longue et une crête rouge sur la tête.,200000000,États-Unis Mexique
-western_grey_squirrel,écureuil gris de l'Ouest,Sciuridae,Sciurus carolinensis,Petit rongeur arboricole au pelage gris avec une rayure blanche sur le visage.,60000000,États-Unis Canada
+skunk,putois,Mustelidae,Mephitis mephitis,Le skunk est un petit mammifère nocturne connu pour son odorant système de défense.,3000000,États-Unis Canada
+black_bear,Ours noir,Ursidae,Ursus americanus,L'ours noir est un ours de taille moyenne avec une fourrure noire et une langue rouge vif.,900000,Canada États-Unis Mexique
+rat,rat,Muridae,Rattus norvegicus,"Le rat est un petit mammifère nocturnal, omnivore et nuisible.",600000000,"France, Royaume-Uni, États-Unis"
+otter,loutres,Mustelidae,Lutra lutra,"Les loutres sont des mammifères semi-aquatiques caractérisés par leur corps fuselé, leur fourrure dense et leur queue musclée.",300000,France Espagne
+beaver,Castor,Castoridae,Castor canadensis,Le castor est un rongeur semi-aquatique connu pour sa capacité à construire des barrages.,60000000,Canada États-Unis Russie Chine
+western_grey_squirrel,écureuil gris de l'Ouest,Sciuridae,Sciurus carolinensis,Petit rongeur arboricole au pelage gris avec une queue touffue.,60000000,États-Unis Canada
+lion,lion,Felidae,Panthera leo,Grand félin d'Afrique et d'Asie avec une crinière distinctive.,230000,"Afrique, Inde"
+raccoon,Raton laveur,Procyonidae,Procyon lotor,Mammifère nocturne omnivore au masque noir et à la queue annelée.,40000000,États-Unis Canada
+muledeer,cerf mulet,Cervidae,Odocoileus hemionus,"Le cerf mulet est un grand cervidé d'Amérique du Nord, reconnaissable à ses oreilles noires et sa queue blanche.",1000000,États-Unis Canada
+elephant,éléphant,Proboscidés,Loxodonta africana,L'éléphant d'Afrique est un grand mammifère herbivore caractérisé par sa trompe et ses défenses.,415000,Afrique du Sud Botswana Kenya Mozambique Namibie Tanzanie Zambie Zimbabwe
