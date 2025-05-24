@@ -186,37 +186,44 @@ def interface():
 
 @api.route("/photo_download", methods=["POST"])
 def photo_download():
-    # Vérifier si un fichier est présent dans la requête
+    # Vérifier la présence du fichier
     if "file" not in request.files:
-        return jsonify({"error": "Aucun fichier trouvé"}), 400
+        return jsonify({"success": False, "message": "Aucun fichier trouvé"}), 400
 
     file = request.files["file"]
 
-    # Vérifier si un fichier a été sélectionné
     if file.filename == "":
-        return jsonify({"error": "Aucun fichier sélectionné"}), 400
+        return jsonify({"success": False, "message": "Aucun fichier sélectionné"}), 400
 
-    # Vérifier l'extension du fichier
+    # Vérification de l'extension
     allowed_extensions = {"jpg", "jpeg", "png"}
     if (
         "." not in file.filename
         or file.filename.rsplit(".", 1)[1].lower() not in allowed_extensions
     ):
-        return jsonify({"error": "Type de fichier non autorisé"}), 400
+        return jsonify({"success": False, "message": "Type de fichier non autorisé"}), 400
 
-    # Créer un nom de fichier avec timestamp pour éviter les doublons
+    # Récupérer la classification transmise
+    classification = request.form.get("classification", "unknown").strip().replace(" ", "_")
+
+    # Nom du fichier : wildlens_{classification}_{timestamp}.jpg
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     file_extension = file.filename.rsplit(".", 1)[1].lower()
-    filename = f"wildlens_{timestamp}.{file_extension}"
+    filename = f"wildlens_{classification}_{timestamp}.{file_extension}"
 
-    # Enregistrer le fichier
+    # Enregistrement
     file_path = os.path.join(photo_save, filename)
-    file.save(file_path)
+    try:
+        file.save(file_path)
+        print(f"Image enregistrée : {filename} avec classification : {classification}")
+    except Exception as e:
+        return jsonify({"success": False, "message": "Erreur lors de l'enregistrement", "error": str(e)}), 500
 
     return jsonify(
         {
             "success": True,
-            "message": "Image enregistrée avec succès",
+            "message": f"Image classée comme '{classification}' enregistrée avec succès",
             "filename": filename,
+            "classification": classification,
         }
     )
