@@ -22,6 +22,12 @@ admin admin lors de la première connexion sur Grafana
 
 ### Backend
 
+# Build l'image
+docker build -t backend-wildlens -f Dockerfile .
+
+# Lance le conteneur
+docker run --env-file .env backend-wildlens
+
 📌 Routes disponibles
 
 Déclenchement des pipelines

@@ -36,28 +36,34 @@ services:
       - GF_DATABASE_NAME=grafana_db
       - GF_DATABASE_USER=grafana
       - GF_DATABASE_PASSWORD=grafana
+      - GF_LOG_LEVEL=warn
+
     depends_on:
       mysql:
         condition: service_healthy
     networks:
       - wildlens-network
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:5.2.2
-    container_name: phpmyadmin
-    restart: always
-    environment:
-      PMA_HOST: mysql
-      PMA_USER: root
-      PMA_PASSWORD: root
-      UPLOAD_LIMIT: 64M
+  backend:
+    image: cedsanc/backend-wildlens:1.3.6
+    container_name: backend-wildlens
     ports:
-      - "8080:80"
+      - "5001:5001"
+    env_file:
+      - .env
+#    volumes:
+#      - ${IMAGES_DIR}:/app/Backend/static/images
     depends_on:
       mysql:
         condition: service_healthy
     networks:
       - wildlens-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
 
 volumes:
   grafana-storage:
