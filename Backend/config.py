@@ -11,7 +11,7 @@ def get_env_var(var_name: str) -> str:
     return value
 
 # Chemins
-IMAGES_DIR = get_env_var("IMAGES_DIR")
+IMAGES_DIR = get_env_var("IMAGES_DIR_CONTAINER")
 
 # Base de données
 DB_HOST = get_env_var("DB_HOST")

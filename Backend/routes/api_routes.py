@@ -67,11 +67,7 @@ def get_images_by_species():
 
         # Construire la réponse
         image_data = [
-            {
-                "path": img["image"],
-                "url": f"/images/{espece}/{img['image']}"
-            }
-            for img in images
+            {"path": img["image"], "url": f"/images/{img['image']}"} for img in images
         ]
 
         response = {

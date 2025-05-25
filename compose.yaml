@@ -45,14 +45,14 @@ services:
       - wildlens-network
 
   backend:
-    image: cedsanc/backend-wildlens:1.3.6
+    image: cedsanc/backend-wildlens:latest
     container_name: backend-wildlens
     ports:
       - "5001:5001"
     env_file:
       - .env
-#    volumes:
-#      - ${IMAGES_DIR}:/app/Backend/static/images
+    volumes:
+      - ${IMAGES_DIR_HOST}:${IMAGES_DIR_CONTAINER}
     depends_on:
       mysql:
         condition: service_healthy
