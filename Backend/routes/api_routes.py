@@ -20,60 +20,46 @@ def index():
 @api.route('/triggermspr')
 def trigger_pipeline_etl():
     """
-    Déclenche manuellement le pipeline ETL
+    Proxy : déclenche manuellement le pipeline ETL sur un service externe
     ---
     tags:
       - ETL
+    description: >
+      Ce endpoint appelle un service externe (non inclus dans le conteneur Docker)
+      pour déclencher un traitement ETL. Il agit comme un proxy HTTP entre l’interface
+      et le vrai service ETL.
+
     responses:
       200:
         description: Pipeline ETL déclenchée avec succès
       500:
-        description: Erreur lors du déclenchement
+        description: Échec de communication avec le service externe
     """
     result = trigger_etl()
     return jsonify(result), 200 if result["success"] else 500
 
 @api.route('/triggermetadata')
 def trigger_pipeline_metadata():
-    result = trigger_metadata()
-    return jsonify(result), 200 if result["success"] else 500
     """
-    Déclenche la génération ou mise à jour des métadonnées
+    Proxy : déclenche une mise à jour des métadonnées sur un service externe
     ---
     tags:
       - ETL
+    description: >
+      Ce endpoint appelle un service externe pour lancer la création ou mise à jour
+      des métadonnées. Il ne traite rien localement, mais renvoie l’état du service appelé.
+
     responses:
       200:
-        description: Pipeline metadata déclenchée avec succès
+        description: Metadata déclenchée avec succès
       500:
-        description: Erreur lors du déclenchement
+        description: Échec de communication avec le service externe
     """
-
-    try:
-        def run_metadata():
-            try:
-                create_metadata()
-            except Exception as e:
-                print(f"[❌ ERREUR METADATA] {e}")
-
-        Thread(target=run_metadata).start()
-
-        return jsonify({
-            "message": "✅ Pipeline Metadata déclenchée avec succès.",
-            "status": "started"
-        }), 200
-
-    except Exception as e:
-        return jsonify({
-            "message": "❌ Échec du déclenchement de la pipeline Metadata.",
-            "error": str(e)
-        }), 500
-
-
+    result = trigger_metadata()
+    return jsonify(result), 200 if result["success"] else 500
 
 @api.route("/images/<path:filename>")
 def serve_image(filename):
-    return send_from_directory(IMAGES_DIR, filename)
     """
     Sert une image statique depuis le dossier d’images
     ---
@@ -91,9 +77,7 @@ def serve_image(filename):
       404:
         description: Image non trouvée
     """
-
-    return send_from_directory("static/images/augmented_train", filename)
-
+    return send_from_directory(IMAGES_DIR, filename)
 
 @api.route("/api/images", methods=["GET"])
 def get_images_by_species():
