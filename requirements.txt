@@ -4,6 +4,7 @@ diagrams
 graphviz
 apscheduler
 pymysql
+flasgger
 google-genai
 requests
 flask
