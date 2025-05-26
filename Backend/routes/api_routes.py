@@ -19,22 +19,90 @@ def index():
 
 @api.route('/triggermspr')
 def trigger_pipeline_etl():
+    """
+    Proxy : déclenche manuellement le pipeline ETL sur un service externe
+    ---
+    tags:
+      - ETL
+    description: >
+      Ce endpoint appelle un service externe (non inclus dans le conteneur Docker)
+      pour déclencher un traitement ETL. Il agit comme un proxy HTTP entre l’interface
+      et le vrai service ETL.
+
+    responses:
+      200:
+        description: Pipeline ETL déclenchée avec succès
+      500:
+        description: Échec de communication avec le service externe
+    """
     result = trigger_etl()
     return jsonify(result), 200 if result["success"] else 500
 
 @api.route('/triggermetadata')
 def trigger_pipeline_metadata():
+    """
+    Proxy : déclenche une mise à jour des métadonnées sur un service externe
+    ---
+    tags:
+      - ETL
+    description: >
+      Ce endpoint appelle un service externe pour lancer la création ou mise à jour
+      des métadonnées. Il ne traite rien localement, mais renvoie l’état du service appelé.
+
+    responses:
+      200:
+        description: Metadata déclenchée avec succès
+      500:
+        description: Échec de communication avec le service externe
+    """
     result = trigger_metadata()
     return jsonify(result), 200 if result["success"] else 500
 
-
 @api.route("/images/<path:filename>")
 def serve_image(filename):
+    """
+    Sert une image statique depuis le dossier d’images
+    ---
+    tags:
+      - Images
+    parameters:
+      - name: filename
+        in: path
+        type: string
+        required: true
+        description: Chemin de l'image à afficher
+    responses:
+      200:
+        description: Image retournée
+      404:
+        description: Image non trouvée
+    """
     return send_from_directory(IMAGES_DIR, filename)
-
 
 @api.route("/api/images", methods=["GET"])
 def get_images_by_species():
+    """
+    Images et informations d'une espèce
+    ---
+    tags:
+      - Espèces
+    parameters:
+      - name: espece
+        in: query
+        type: string
+        required: true
+        description: Nom français de l'espèce
+    responses:
+      200:
+        description: Métadonnées et images de l'espèce
+      400:
+        description: Paramètre 'espece' manquant
+      404:
+        description: Espèce introuvable
+      500:
+        description: Erreur serveur
+    """
+
     espece = request.args.get("espece")
     if not espece:
         return jsonify({"error": "Paramètre 'espece' requis"}), 400
@@ -89,6 +157,20 @@ def get_images_by_species():
 
 @api.route("/api/especes", methods=["GET"])
 def get_especes():
+    """
+    Liste des espèces
+    ---
+    responses:
+      200:
+        description: Retourne une liste des espèces
+        schema:
+          type: object
+          properties:
+            especes:
+              type: array
+              items:
+                type: string
+    """
     try:
         conn = pymysql.connect(
             host=DB_HOST,
@@ -114,6 +196,18 @@ def get_especes():
 
 @api.route("/api/metadata", methods=["GET"])
 def get_all_metadata():
+    """
+    Récupérer les métadonnées de toutes les espèces
+    ---
+    tags:
+      - Espèces
+    responses:
+      200:
+        description: Liste des métadonnées de chaque espèce
+      500:
+        description: Erreur serveur
+    """
+
     try:
         conn = pymysql.connect(
             host=DB_HOST,
@@ -142,11 +236,48 @@ def get_all_metadata():
 
 @api.route("/interface")
 def interface():
+    """
+    Interface HTML de test pour les fonctions ETL
+    ---
+    tags:
+      - Interface
+    responses:
+      200:
+        description: Interface HTML de gestion
+    """
+
     return render_template("interface.html")
 
 
 @api.route("/photo_download", methods=["POST"])
 def photo_download():
+    """
+    Enregistrement d'une photo classée par le front
+    ---
+    tags:
+      - Upload
+    consumes:
+      - multipart/form-data
+    parameters:
+      - name: file
+        in: formData
+        type: file
+        required: true
+        description: Image classée par le modèle TFLite
+      - name: classification
+        in: formData
+        type: string
+        required: false
+        description: Nom de l'espèce détectée
+    responses:
+      200:
+        description: Image enregistrée avec succès
+      400:
+        description: Erreur de validation ou type de fichier incorrect
+      500:
+        description: Erreur serveur lors de l’enregistrement
+    """
+
     # Vérifier la présence du fichier
     if "file" not in request.files:
         return jsonify({"success": False, "message": "Aucun fichier trouvé"}), 400
