@@ -1,11 +1,3 @@
-pandas
-numpy
-pyspark
-matplotlib
-seaborn
-scikit-learn
-jupyterlab
-mistralai
 python-dotenv
 ace_tools
 diagrams
@@ -13,3 +5,5 @@ graphviz
 apscheduler
 pymysql
 google-genai
+requests
+flask

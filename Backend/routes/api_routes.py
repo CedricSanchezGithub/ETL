@@ -1,13 +1,12 @@
-from threading import Thread
-
-from flask import Blueprint, render_template, send_from_directory
-import pymysql
-from flask import request, jsonify
-import os
 import datetime
+import os
 
-from ETL.metadata_manager import create_metadata
-from ETL.notebook_to_python import main_function
+import pymysql
+from flask import Blueprint, render_template, send_from_directory
+from flask import request, jsonify
+
+from Backend.config import DB_NAME, DB_PASSWORD, DB_USER, DB_HOST, IMAGES_DIR
+from Backend.proxy.etl_proxy import trigger_etl, trigger_metadata
 
 api = Blueprint("api", __name__)
 photo_save = "Backend/static/photo_save"
@@ -18,59 +17,20 @@ def index():
     return "APScheduler est en cours d'exécution."
 
 
-@api.route("/triggermspr")
+@api.route('/triggermspr')
 def trigger_pipeline_etl():
-    try:
+    result = trigger_etl()
+    return jsonify(result), 200 if result["success"] else 500
 
-        def run_pipeline():
-            try:
-                main_function()
-            except Exception as e:
-                print(f"[❌ ERREUR ETL] {e}")
-
-        Thread(target=run_pipeline).start()
-
-        return jsonify(
-            {"message": "✅ Pipeline ETL déclenchée avec succès.", "status": "started"}
-        ), 200
-
-    except Exception as e:
-        return jsonify(
-            {"message": "❌ Échec du déclenchement de la pipeline.", "error": str(e)}
-        ), 500
-
-
-@api.route("/triggermetadata")
+@api.route('/triggermetadata')
 def trigger_pipeline_metadata():
-    try:
-
-        def run_metadata():
-            try:
-                create_metadata()
-            except Exception as e:
-                print(f"[❌ ERREUR METADATA] {e}")
-
-        Thread(target=run_metadata).start()
-
-        return jsonify(
-            {
-                "message": "✅ Pipeline Metadata déclenchée avec succès.",
-                "status": "started",
-            }
-        ), 200
-
-    except Exception as e:
-        return jsonify(
-            {
-                "message": "❌ Échec du déclenchement de la pipeline Metadata.",
-                "error": str(e),
-            }
-        ), 500
+    result = trigger_metadata()
+    return jsonify(result), 200 if result["success"] else 500
 
 
 @api.route("/images/<path:filename>")
 def serve_image(filename):
-    return send_from_directory("static/images/augmented_train", filename)
+    return send_from_directory(IMAGES_DIR, filename)
 
 
 @api.route("/api/images", methods=["GET"])
@@ -80,12 +40,11 @@ def get_images_by_species():
         return jsonify({"error": "Paramètre 'espece' requis"}), 400
 
     try:
-        # Connexion MySQL
         conn = pymysql.connect(
-            host="localhost",
-            user="root",
-            password="root",
-            database="wildlens",
+            host=DB_HOST,
+            user=DB_USER,
+            password=DB_PASSWORD,
+            database=DB_NAME,
             charset="utf8mb4",
             cursorclass=pymysql.cursors.DictCursor,
         )
@@ -99,7 +58,6 @@ def get_images_by_species():
 
             id_espece = metadata["id_espece"]
 
-            # Obtenir les images
             cursor.execute(
                 "SELECT image FROM wildlens_images WHERE id_espece = %s", (id_espece,)
             )
@@ -133,10 +91,10 @@ def get_images_by_species():
 def get_especes():
     try:
         conn = pymysql.connect(
-            host="localhost",
-            user="root",
-            password="root",
-            database="wildlens",
+            host=DB_HOST,
+            user=DB_USER,
+            password=DB_PASSWORD,
+            database=DB_NAME,
             charset="utf8mb4",
             cursorclass=pymysql.cursors.DictCursor,
         )
@@ -158,10 +116,10 @@ def get_especes():
 def get_all_metadata():
     try:
         conn = pymysql.connect(
-            host="localhost",
-            user="root",
-            password="root",
-            database="wildlens",
+            host=DB_HOST,
+            user=DB_USER,
+            password=DB_PASSWORD,
+            database=DB_NAME,
             charset="utf8mb4",
             cursorclass=pymysql.cursors.DictCursor,
         )
