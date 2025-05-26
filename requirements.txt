@@ -12,3 +12,4 @@ diagrams
 graphviz
 apscheduler
 pymysql
+google-genai

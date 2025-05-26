@@ -18,9 +18,10 @@ def index():
     return "APScheduler est en cours d'exécution."
 
 
-@api.route('/triggermspr')
+@api.route("/triggermspr")
 def trigger_pipeline_etl():
     try:
+
         def run_pipeline():
             try:
                 main_function()
@@ -29,21 +30,20 @@ def trigger_pipeline_etl():
 
         Thread(target=run_pipeline).start()
 
-        return jsonify({
-            "message": "✅ Pipeline ETL déclenchée avec succès.",
-            "status": "started"
-        }), 200
+        return jsonify(
+            {"message": "✅ Pipeline ETL déclenchée avec succès.", "status": "started"}
+        ), 200
 
     except Exception as e:
-        return jsonify({
-            "message": "❌ Échec du déclenchement de la pipeline.",
-            "error": str(e)
-        }), 500
+        return jsonify(
+            {"message": "❌ Échec du déclenchement de la pipeline.", "error": str(e)}
+        ), 500
 
 
-@api.route('/triggermetadata')
+@api.route("/triggermetadata")
 def trigger_pipeline_metadata():
     try:
+
         def run_metadata():
             try:
                 create_metadata()
@@ -52,17 +52,20 @@ def trigger_pipeline_metadata():
 
         Thread(target=run_metadata).start()
 
-        return jsonify({
-            "message": "✅ Pipeline Metadata déclenchée avec succès.",
-            "status": "started"
-        }), 200
+        return jsonify(
+            {
+                "message": "✅ Pipeline Metadata déclenchée avec succès.",
+                "status": "started",
+            }
+        ), 200
 
     except Exception as e:
-        return jsonify({
-            "message": "❌ Échec du déclenchement de la pipeline Metadata.",
-            "error": str(e)
-        }), 500
-
+        return jsonify(
+            {
+                "message": "❌ Échec du déclenchement de la pipeline Metadata.",
+                "error": str(e),
+            }
+        ), 500
 
 
 @api.route("/images/<path:filename>")
