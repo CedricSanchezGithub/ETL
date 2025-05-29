@@ -1,10 +1,10 @@
+import datetime
+import functools
+import os
 from threading import Thread
 
-from flask import Blueprint, render_template, send_from_directory
 import pymysql
-from flask import request, jsonify
-import os
-import datetime
+from flask import Blueprint, jsonify, render_template, request, send_from_directory
 
 from ETL.metadata_manager import create_metadata
 from ETL.notebook_to_python import main_function
@@ -13,12 +13,30 @@ api = Blueprint("api", __name__)
 photo_save = "Backend/static/photo_save"
 
 
+def require_api_key(view_func):
+    """Decorator to require API key in Authorization header."""
+
+    @functools.wraps(view_func)
+    def wrapped(*args, **kwargs):
+        api_key = os.environ.get("API_KEY")
+        auth_header = request.headers.get("Authorization", "")
+        if not api_key or not auth_header.startswith("Bearer "):
+            return jsonify({"error": "Unauthorized"}), 401
+        token = auth_header.split(" ", 1)[1]
+        if token != api_key:
+            return jsonify({"error": "Invalid API key"}), 403
+        return view_func(*args, **kwargs)
+
+    return wrapped
+
+
 @api.route("/")
 def index():
     return "APScheduler est en cours d'exécution."
 
 
 @api.route("/triggermspr")
+@require_api_key
 def trigger_pipeline_etl():
     try:
 
@@ -41,6 +59,7 @@ def trigger_pipeline_etl():
 
 
 @api.route("/triggermetadata")
+@require_api_key
 def trigger_pipeline_metadata():
     try:
 
@@ -188,6 +207,7 @@ def interface():
 
 
 @api.route("/photo_download", methods=["POST"])
+@require_api_key
 def photo_download():
     # Vérifier si un fichier est présent dans la requête
     if "file" not in request.files:

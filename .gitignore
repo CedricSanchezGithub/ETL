@@ -89,3 +89,4 @@ instance/
 uv.lock
 pyproject.toml
 .gitignore
+.vscode/settings.json

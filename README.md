@@ -1,11 +1,11 @@
 # MSPR 2024 - 2025
 
-### Cédric Sanchez - Valentin Fiess - Jason TCHAGA - Louis GARDET ###
+### Cédric Sanchez - Valentin Fiess - Jason TCHAGA - Louis GARDET
 
 ### Mise en place du projet
 
-git pull https://github.com/CedricSanchezGithub/ETL/edit/reorganisation   
-docker compose up   
+git pull https://github.com/CedricSanchezGithub/ETL/edit/reorganisation  
+docker compose up  
 -m venv .venv  
 source .venv/bin/activate
 
@@ -47,3 +47,7 @@ Métadonnées
 
     GET http://127.0.0.1:5000/api/metadata
     Retourne les métadonnées complètes pour toutes les espèces.
+
+# Ajoutez la variable API_KEY à votre .env
+
+API_KEY="apikey"

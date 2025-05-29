@@ -28,7 +28,6 @@ class ApiRoutesTestCase(unittest.TestCase):
 
     def test_get_especes(self):
         response = self.client.get("/api/especes")
-        # 200 or 500 depending on DB, but endpoint must respond
         self.assertIn(response.status_code, [200, 500])
 
     def test_get_all_metadata(self):
@@ -39,6 +38,56 @@ class ApiRoutesTestCase(unittest.TestCase):
         response = self.client.get("/api/images")
         self.assertEqual(response.status_code, 400)
         self.assertIn(b"espece", response.data)
+
+    def test_trigger_pipeline_etl_auth(self):
+        # Test sans header
+        response = self.client.get("/triggermspr")
+        self.assertEqual(response.status_code, 401)
+        # Test avec mauvaise clé
+        response = self.client.get(
+            "/triggermspr", headers={"Authorization": "Bearer wrong"}
+        )
+        self.assertEqual(response.status_code, 403)
+        # Test avec bonne clé
+        import os
+
+        os.environ["API_KEY"] = "testkey"
+        response = self.client.get(
+            "/triggermspr", headers={"Authorization": "Bearer testkey"}
+        )
+        self.assertIn(response.status_code, [200, 500])
+
+    def test_trigger_pipeline_metadata_auth(self):
+        response = self.client.get("/triggermetadata")
+        self.assertEqual(response.status_code, 401)
+        response = self.client.get(
+            "/triggermetadata", headers={"Authorization": "Bearer wrong"}
+        )
+        self.assertEqual(response.status_code, 403)
+        import os
+
+        os.environ["API_KEY"] = "testkey"
+        response = self.client.get(
+            "/triggermetadata", headers={"Authorization": "Bearer testkey"}
+        )
+        self.assertIn(response.status_code, [200, 500])
+
+    def test_photo_download_auth(self):
+        response = self.client.post("/photo_download")
+        self.assertEqual(response.status_code, 401)
+        response = self.client.post(
+            "/photo_download", headers={"Authorization": "Bearer wrong"}
+        )
+        self.assertEqual(response.status_code, 403)
+        import os
+
+        os.environ["API_KEY"] = "testkey"
+        # Envoi d'un fichier factice pour le test
+        data = {"file": (b"fake", "test.jpg")}
+        response = self.client.post(
+            "/photo_download", headers={"Authorization": "Bearer testkey"}, data=data
+        )
+        self.assertIn(response.status_code, [200, 400])
 
 
 if __name__ == "__main__":

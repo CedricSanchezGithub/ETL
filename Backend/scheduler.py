@@ -3,10 +3,14 @@ import atexit
 import logging
 
 from apscheduler.schedulers.background import BackgroundScheduler
+from dotenv import load_dotenv
 from flask import Flask
 
 from Backend.routes import api
 from ETL.notebook_to_python import main_function
+
+# Charger les variables d'environnement depuis .env
+load_dotenv()
 
 # Application Flask
 app = Flask(__name__)
