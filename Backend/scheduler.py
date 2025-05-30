@@ -25,12 +25,9 @@ app.register_blueprint(api)
 logging.basicConfig()
 logging.getLogger("apscheduler").setLevel(logging.DEBUG)
 
-
 def pipeline_etl_job():
     result = trigger_etl()
     print(result["message"])
-
-
 
 def test_mysql_connection(retries=5, delay=5):
     for attempt in range(1, retries + 1):
@@ -54,17 +51,14 @@ def test_mysql_connection(retries=5, delay=5):
                 print("❌ Toutes les tentatives de connexion MySQL ont échoué. Arrêt du service.")
                 exit(1)
 
+# Initialisation exécutée à l'import du module (utile pour Gunicorn)
+test_mysql_connection()
 
+scheduler = BackgroundScheduler()
+scheduler.add_job(pipeline_etl_job, "cron", hour=0, minute=0, id="daily_etl")
+scheduler.start()
+atexit.register(lambda: scheduler.shutdown())
+
+# Exécution uniquement en local
 if __name__ == "__main__":
-    test_mysql_connection()
-    # Configuration d'APScheduler
-    scheduler = BackgroundScheduler()
-    # Planifie l'exécution de 'pipeline_etl_job' tous les jours à 00:00
-    scheduler.add_job(pipeline_etl_job, "cron", hour=0, minute=0, id="daily_etl")
-    scheduler.start()
-
-    # Arrêt propre du scheduler quand l'appli s'arrête
-    atexit.register(lambda: scheduler.shutdown())
-
-    # Lancement de l'appli Flask (sur port 5001)
     app.run(host="0.0.0.0", port=5001, debug=True)

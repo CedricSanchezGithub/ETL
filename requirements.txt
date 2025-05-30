@@ -8,3 +8,4 @@ flasgger
 google-genai
 requests
 flask
+gunicorn

@@ -10,5 +10,8 @@ COPY ./requirements.txt /app/requirements.txt
 # Installation des dépendances
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Point d’entrée : on lance scheduler.py
-CMD ["python", "Backend/scheduler.py"]
+# Exposition du port utilisé par Gunicorn
+EXPOSE 5001
+
+# Point d’entrée : on utilise Gunicorn pour lancer l'app Flask
+CMD ["gunicorn", "--bind", "0.0.0.0:5001", "Backend.scheduler:app"]

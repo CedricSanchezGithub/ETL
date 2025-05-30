@@ -2,36 +2,41 @@
 
 ### Cédric Sanchez - Valentin Fiess - Jason TCHAGA - Louis GARDET ###
 
-### Mise en place du projet
-
-git pull https://github.com/CedricSanchezGithub/ETL
-docker compose up   
-
-# Installation d'un Environnement Virtuel et des Dépendances en Local
+---
+### Installation d'un Environnement Virtuel et des Dépendances en Local
+```bash
 -m venv .venv  
+```
+```bash
 source .venv/bin/activate
+```
+```bash
 pip install -r requirements.txt
-
-# Installation de Java 11
-sudo apt install openjdk-11-jdk
-
-
+```
+---
 ### Interface de Contrôle
 
 http://127.0.0.1:5001/interface
 
 ### Grafana
 
-http://localhost:3001/
+http://localhost:3001/  
 admin admin lors de la première connexion sur Grafana
 
-### Backend
+---
+# Backend
 
-# Se connecter au registre Docker
-docker login
+### Lancer le backend
+Lancer le 'proxy' pour l'ETL :   
+```bash
+gunicorn --bind 0.0.0.0:6001 ETL/serveur_etl:app
+```
+Lancer l'API principale :
+```bash
+ docker compose up --build
+```
+### Créer un fichier .env à la racine du projet avec les variables d'environnement nécessaires
 
-# Créer un fichier .env à la racine du projet avec les variables d'environnement nécessaires
-# Exemple de contenu du fichier .env
 ```env
 ##### Clés API #####
 mistral_api_key=""
@@ -52,23 +57,40 @@ ETL_API_BASE_URL=http://<ip_de_l_hote>:6001 <- c'est l'ip de votre machine hôte
 
 ```
 
-# Construire l'image Docker pour le backend
+----
+# Docker 
+
+### Se connecter au registre Docker (si besoin)
+```bash
+docker login
+```
+### Construire l'image Docker pour le backend
+```bash
 docker build -t cedsanc/backend-wildlens:1.3.8 . &&  docker build -t cedsanc/backend-wildlens:latest .
-
-# Pousser l'image vers le registre Docker (changez le nom d'utilisateur par le votre si vous voulez)
+```
+### Pousser l'image vers le registre Docker (changez le nom d'utilisateur par le votre si vous voulez)
+```bash
 docker push cedsanc/backend-wildlens:1.3.8 &&  docker push cedsanc/backend-wildlens:latest 
+```
 
-# Lancer le docker compose
-docker compose up 
+----
+
 📌 Routes disponibles
 
 Déclenchement des pipelines
 
     GET http://127.0.0.1:5001/triggermspr
+    Déclenche le proxy qui déclanchera la pipeline ETL.
+
+    GET http://127.0.0.1:6001/triggermspr
     Déclenche manuellement le pipeline ETL principal.
 
     GET http://127.0.0.1:5001/triggermetadata
+    Déclenche le proxy qui déclanchera la génération des métadonnées.
+
+    GET http://127.0.0.1:6001/triggermetadata
     Déclenche manuellement la génération des métadonnées.
+    
 
 Accès aux images
 
