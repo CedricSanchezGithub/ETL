@@ -7,10 +7,10 @@ from flask import request, jsonify
 
 from Backend.config import DB_NAME, DB_PASSWORD, DB_USER, DB_HOST, IMAGES_DIR
 from Backend.proxy.etl_proxy import trigger_etl, trigger_metadata
+from Backend.utils.auth import require_api_key
 
 api = Blueprint("api", __name__)
 photo_save = "Backend/static/photo_save"
-
 
 @api.route("/")
 def index():
@@ -18,6 +18,7 @@ def index():
 
 
 @api.route('/triggermspr')
+@require_api_key
 def trigger_pipeline_etl():
     """
     Proxy : déclenche manuellement le pipeline ETL sur un service externe
@@ -39,6 +40,7 @@ def trigger_pipeline_etl():
     return jsonify(result), 200 if result["success"] else 500
 
 @api.route('/triggermetadata')
+@require_api_key
 def trigger_pipeline_metadata():
     """
     Proxy : déclenche une mise à jour des métadonnées sur un service externe
@@ -59,6 +61,7 @@ def trigger_pipeline_metadata():
     return jsonify(result), 200 if result["success"] else 500
 
 @api.route("/images/<path:filename>")
+@require_api_key
 def serve_image(filename):
     """
     Sert une image statique depuis le dossier d’images
@@ -80,6 +83,7 @@ def serve_image(filename):
     return send_from_directory(IMAGES_DIR, filename)
 
 @api.route("/api/images", methods=["GET"])
+@require_api_key
 def get_images_by_species():
     """
     Images et informations d'une espèce
@@ -156,6 +160,7 @@ def get_images_by_species():
 
 
 @api.route("/api/especes", methods=["GET"])
+@require_api_key
 def get_especes():
     """
     Liste des espèces
@@ -195,6 +200,7 @@ def get_especes():
 
 
 @api.route("/api/metadata", methods=["GET"])
+@require_api_key
 def get_all_metadata():
     """
     Récupérer les métadonnées de toutes les espèces
@@ -235,6 +241,7 @@ def get_all_metadata():
 
 
 @api.route("/interface")
+@require_api_key
 def interface():
     """
     Interface HTML de test pour les fonctions ETL
@@ -250,6 +257,7 @@ def interface():
 
 
 @api.route("/photo_download", methods=["POST"])
+@require_api_key
 def photo_download():
     """
     Enregistrement d'une photo classée par le front

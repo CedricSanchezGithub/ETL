@@ -6,7 +6,6 @@ from Backend.proxy.etl_proxy import trigger_etl
 
 import atexit
 import logging
-
 from apscheduler.schedulers.background import BackgroundScheduler
 from flask import Flask
 import time
