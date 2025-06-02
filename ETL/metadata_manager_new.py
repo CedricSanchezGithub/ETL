@@ -181,7 +181,8 @@ def metadata_manager():
                 - Pour la Description, je souhaite 30 mots grand maximum.
                 - Pour le nom de l'espèce en anglais, ce sera le nom que je t'aurai données lors du prompt, brut, tel quel, sans aucun changement. Notamment, sans majuscule.
                 - Pour le nom en français, je souhaite éviter les mot composable ("Chat" au lieu de "Chat Domestique" par exemple)
-
+                - Pour la population estimé, je souhaite forcément un double, pas un entier. Par exemple, 1000000.0 au lieu de 1000000 ou 1.0 million.
+                
                 Présente les informations sous ce format exact :
                 Espèce anglais : <nom de l'espèce en anglais>
                 Espèce français : <nom de l'espèce traduit en français>
