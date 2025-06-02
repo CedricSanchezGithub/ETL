@@ -18,6 +18,18 @@ from mistralai import Mistral
 
 skip_test = not os.path.exists("ressource/image/train")
 
+def convertir_colonne_float(df, colonne, valeur_defaut=0.0):
+    """Convertit une colonne en float de manière robuste."""
+    if colonne in df.columns:
+        df[colonne] = (
+            pd.to_numeric(df[colonne], errors="coerce")
+            .fillna(valeur_defaut)
+            .astype(float)
+        )
+    else:
+        print(f"⚠️ Colonne '{colonne}' introuvable dans le DataFrame.")
+    return df
+
 def metadata_manager():
     # Scanner les dossiers d'animaux
     folder_all_animals = [
@@ -257,6 +269,7 @@ def metadata_manager():
                     - Pour chaque champ avec différence, indique clairement le champ, la valeur à retenir et pourquoi
                     - Si aucune différence significative n'est trouvée, indique "Aucune différence significative"
                     - Si une valeur est manifestement incorrecte, signale-la avec "ERREUR: [explication]"
+                    - Pour la population estimé, je souhaite forcément un double, pas un entier. Par exemple, 1000000.0 au lieu de 1000000 ou 1.0 million.
 
                     Fournis également un ensemble de métadonnées final qui combine le meilleur des deux sources.
                     Présente ces métadonnées finales sous le même format que les entrées originales:
@@ -526,8 +539,6 @@ def metadata_manager():
         os.remove(fichier_csv_final)
 
     # Sauvegarde du CSV final (avec mode='w' pour s'assurer de réécrire le fichier)
-    df_animaux_final["Population estimée"] = pd.to_numeric(df_animaux_final["Population estimée"],
-                                                           errors="coerce").fillna(0)
     df_animaux_final.to_csv(fichier_csv_final, index=False, mode="w")
     print(f"✅ Fichier final créé avec succès : {fichier_csv_final}")
     # %%
@@ -564,6 +575,7 @@ def metadata_manager():
     print(df_animaux_final)
 
     # Sauvegarde dans des CSV
+    df_animaux_final = convertir_colonne_float(df_animaux_final, "Population estimée")
     df_animaux_mistral.to_csv(fichier_csv_mistral, index=False)
     df_animaux_gemini.to_csv(fichier_csv_gemini, index=False)
     df_comparaisons.to_csv(fichier_csv_comparaison, index=False)
