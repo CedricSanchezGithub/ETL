@@ -1,5 +1,7 @@
 from flask import Flask, jsonify
 from threading import Thread
+
+from ETL.metadata_manager_new import metadata_manager
 from notebook_to_python import main_function
 from metadata_manager import create_metadata
 
@@ -33,7 +35,7 @@ def trigger_pipeline_metadata():
     try:
         def run_metadata():
             try:
-                create_metadata()
+                metadata_manager()
             except Exception as e:
                 print(f"[❌ ERREUR METADATA] {e}")
 

@@ -12,18 +12,13 @@ import time
 from datetime import datetime
 
 import pandas as pd
-import pytest
 from dotenv import load_dotenv
 from google import genai
 from mistralai import Mistral
 
 skip_test = not os.path.exists("ressource/image/train")
 
-
-@pytest.mark.skipif(
-    skip_test, reason="Missing ressource/image/train directory for test."
-)
-def test_metadata_manager():
+def metadata_manager():
     # Scanner les dossiers d'animaux
     folder_all_animals = [
         d
@@ -530,6 +525,8 @@ def test_metadata_manager():
         os.remove(fichier_csv_final)
 
     # Sauvegarde du CSV final (avec mode='w' pour s'assurer de réécrire le fichier)
+    df_animaux_final["Population estimée"] = pd.to_numeric(df_animaux_final["Population estimée"],
+                                                           errors="coerce").fillna(0)
     df_animaux_final.to_csv(fichier_csv_final, index=False, mode="w")
     print(f"✅ Fichier final créé avec succès : {fichier_csv_final}")
     # %%
@@ -576,3 +573,6 @@ def test_metadata_manager():
     print(f" - {fichier_csv_gemini}")
     print(f" - {fichier_csv_comparaison}")
     print(f" - {fichier_csv_final}")
+
+if __name__ == "__main__" :
+    metadata_manager()
