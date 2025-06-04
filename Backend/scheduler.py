@@ -13,6 +13,7 @@ import pymysql
 from Backend.config import DB_HOST, DB_USER, DB_PASSWORD, DB_NAME
 from Backend.routes import api
 from flasgger import Swagger
+import logging
 
 # Application Flask
 app = Flask(__name__)

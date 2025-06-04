@@ -18,7 +18,6 @@ def index():
 
 
 @api.route('/triggermspr')
-@require_api_key
 def trigger_pipeline_etl():
     """
     Proxy : déclenche manuellement le pipeline ETL sur un service externe
@@ -61,7 +60,6 @@ def trigger_pipeline_metadata():
     return jsonify(result), 200 if result["success"] else 500
 
 @api.route("/images/<path:filename>")
-@require_api_key
 def serve_image(filename):
     """
     Sert une image statique depuis le dossier d’images
@@ -83,7 +81,6 @@ def serve_image(filename):
     return send_from_directory(IMAGES_DIR, filename)
 
 @api.route("/api/images", methods=["GET"])
-@require_api_key
 def get_images_by_species():
     """
     Images et informations d'une espèce

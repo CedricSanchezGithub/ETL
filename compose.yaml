@@ -37,7 +37,6 @@ services:
       - GF_DATABASE_USER=grafana
       - GF_DATABASE_PASSWORD=grafana
       - GF_LOG_LEVEL=warn
-
     depends_on:
       mysql:
         condition: service_healthy
@@ -64,6 +63,24 @@ services:
       timeout: 10s
       retries: 5
 
+  phpmyadmin:
+    image: lscr.io/linuxserver/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+      - MYSQL_ROOT_PASSWORD=root
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - wildlens-network
 
 volumes:
   grafana-storage:
