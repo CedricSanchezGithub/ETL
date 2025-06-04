@@ -62,6 +62,27 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+  loki:
+    image: grafana/loki:2.9.3
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - wildlens-network
+
+  promtail:
+    image: grafana/promtail:2.9.3
+    container_name: promtail
+    volumes:
+      - /var/log:/var/log
+      - /etc/machine-id:/etc/machine-id:ro
+      - ./promtail-config.yaml:/etc/promtail/config.yaml
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: -config.file=/etc/promtail/config.yaml
+    networks:
+      - wildlens-network
 
   phpmyadmin:
     image: lscr.io/linuxserver/phpmyadmin:latest
