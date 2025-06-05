@@ -36,7 +36,12 @@ def trigger_pipeline_etl():
         description: Échec de communication avec le service externe
     """
     result = trigger_etl()
-    return jsonify(result), 200 if result["success"] else 500
+    status_code = 200 if result["success"] else 500
+    return jsonify({
+        "success": result["success"],
+        "message": result["message"]
+    }), status_code
+
 
 @api.route('/triggermetadata')
 @require_api_key
@@ -57,7 +62,12 @@ def trigger_pipeline_metadata():
         description: Échec de communication avec le service externe
     """
     result = trigger_metadata()
-    return jsonify(result), 200 if result["success"] else 500
+    status_code = 200 if result["success"] else 500
+    return jsonify({
+        "success": result["success"],
+        "message": result["message"]
+    }), status_code
+
 
 @api.route("/images/<path:filename>")
 def serve_image(filename):
