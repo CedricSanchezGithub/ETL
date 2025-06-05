@@ -14,3 +14,4 @@ albumentations
 apscheduler
 flask
 pymysql
+gunicorn

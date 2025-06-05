@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.vscode/
+.idea/
+.env
+ETL/
+installation/
+Machine Learning/
+*.ipynb
+sync_images.sh
