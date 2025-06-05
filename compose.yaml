@@ -18,6 +18,7 @@ services:
     networks:
       - wildlens-network
     volumes:
+      - mysql-data:/var/lib/mysql
       - ./installation/initdb:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
@@ -62,6 +63,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+
   loki:
     image: grafana/loki:2.9.3
     container_name: loki
@@ -105,3 +107,4 @@ services:
 
 volumes:
   grafana-storage:
+  mysql-data:
