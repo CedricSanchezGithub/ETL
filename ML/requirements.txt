@@ -1,0 +1,11 @@
+tensorflow==2.18.1
+tensorflow-hub
+tensorflow-datasets
+Pillow
+matplotlib
+scikit-learn
+numpy
+jupyter
+ipykernel
+torch
+torchvision

@@ -1,0 +1,111 @@
+networks:
+  wildlens-network:
+    driver: bridge
+
+services:
+  mysql:
+    image: mysql:8.0.33-oracle
+    container_name: mysql-container
+    command: --default-authentication-plugin=mysql_native_password --bind-address=0.0.0.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wildlens
+      MYSQL_DATABASE_EXTRA: grafana_db
+      MYSQL_USER: grafana
+      MYSQL_PASSWORD: grafana
+    ports:
+      - "3306:3306"
+    networks:
+      - wildlens-network
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./installation/initdb:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+
+  backend:
+    image: cedsanc/backend-wildlens:latest
+    container_name: backend-wildlens
+    ports:
+      - "5001:5001"
+    env_file:
+      - .env
+    volumes:
+      - ${IMAGES_DIR_HOST}:${IMAGES_DIR_CONTAINER}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - wildlens-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  grafana_pg:
+    image: grafana/grafana:latest
+    container_name: grafana_pg
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    environment:
+      - GF_DATABASE_TYPE=mysql
+      - GF_DATABASE_HOST=mysql
+      - GF_DATABASE_NAME=grafana_db
+      - GF_DATABASE_USER=grafana
+      - GF_DATABASE_PASSWORD=grafana
+      - GF_LOG_LEVEL=warn
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - wildlens-network
+
+
+  loki:
+    image: grafana/loki:2.9.3
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - wildlens-network
+
+  promtail:
+    image: grafana/promtail:2.9.3
+    container_name: promtail
+    volumes:
+      - /var/log:/var/log
+      - /etc/machine-id:/etc/machine-id:ro
+      - ./promtail-config.yaml:/etc/promtail/config.yaml
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: -config.file=/etc/promtail/config.yaml
+    networks:
+      - wildlens-network
+
+  phpmyadmin:
+    image: lscr.io/linuxserver/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+      - MYSQL_ROOT_PASSWORD=root
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - wildlens-network
+
+volumes:
+  grafana-storage:
+  mysql-data:

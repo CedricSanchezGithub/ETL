@@ -44,7 +44,6 @@ def trigger_pipeline_etl():
 
 
 @api.route('/triggermetadata')
-@require_api_key
 def trigger_pipeline_metadata():
     """
     Proxy : déclenche une mise à jour des métadonnées sur un service externe
@@ -167,7 +166,6 @@ def get_images_by_species():
 
 
 @api.route("/api/especes", methods=["GET"])
-@require_api_key
 def get_especes():
     """
     Liste des espèces
@@ -207,7 +205,6 @@ def get_especes():
 
 
 @api.route("/api/metadata", methods=["GET"])
-@require_api_key
 def get_all_metadata():
     """
     Récupérer les métadonnées de toutes les espèces
@@ -248,7 +245,6 @@ def get_all_metadata():
 
 
 @api.route("/interface")
-@require_api_key
 def interface():
     """
     Interface HTML de test pour les fonctions ETL
@@ -264,7 +260,6 @@ def interface():
 
 
 @api.route("/photo_download", methods=["POST"])
-@require_api_key
 def photo_download():
     """
     Enregistrement d'une photo classée par le front
