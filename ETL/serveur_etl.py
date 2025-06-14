@@ -1,8 +1,8 @@
 from flask import Flask, jsonify
 from threading import Thread
 
-from metadata_manager_new import metadata_manager
-from notebook_to_python import main_function
+from ETL.metadata_manager_new import metadata_manager
+from ETL.notebook_to_python import main_function
 
 app = Flask(__name__)
 
