@@ -1,11 +1,8 @@
 import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
-from ML.ML_wildlens import train_loader, train_df, df_all
-
-
-def afficher_echantillon(dataloader=train_loader, n=10):
-
-    # Répartition des classes dans le train
+def afficher_echantillon(train_df, df_all):
     class_counts = train_df["nom_fr"].value_counts().sort_index()
     class_counts.plot(kind="bar", figsize=(10, 4))
     plt.title("Répartition des images par classe (nom_fr) - TRAIN")
@@ -17,8 +14,6 @@ def afficher_echantillon(dataloader=train_loader, n=10):
     df_all["id_etat"].replace({1: "train", 2: "val", 3: "test"}).value_counts().plot(
         kind="bar", title="Répartition globale des images par split"
     )
-
-    import seaborn as sns
 
     df_all["split"] = df_all["id_etat"].replace({1: "train", 2: "val", 3: "test"})
 
@@ -52,3 +47,36 @@ def tracer_courbes_performance(train_losses, train_accuracies, val_accuracies):
 
     plt.tight_layout()
     plt.show()
+
+def afficher_matrice_confusion(true_labels, predicted_labels, idx_to_label,
+                                   titre="Matrice de confusion - Test final", cmap="Greens"):
+
+        cm = confusion_matrix(true_labels, predicted_labels)
+        disp = ConfusionMatrixDisplay(confusion_matrix=cm,
+                                      display_labels=[idx_to_label[i] for i in range(len(cm))])
+        fig, ax = plt.subplots(figsize=(10, 10))
+        disp.plot(xticks_rotation='vertical', ax=ax, cmap=cmap)
+        plt.title(titre)
+        plt.tight_layout()
+        plt.show()
+
+
+from sklearn.metrics import classification_report
+import pandas as pd
+
+
+def generer_rapport_classification(true_labels, predicted_labels, idx_to_label, arrondi=2, afficher=True):
+
+    report = classification_report(
+        true_labels,
+        predicted_labels,
+        target_names=[idx_to_label[i] for i in range(len(idx_to_label))],
+        output_dict=True
+    )
+    df_report = pd.DataFrame(report).transpose()
+    df_report_rounded = df_report.round(arrondi)
+
+    if afficher:
+        display(df_report_rounded.head(len(idx_to_label)))
+
+    return df_report_rounded
