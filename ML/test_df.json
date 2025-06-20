@@ -1,0 +1,386 @@
+{"id_image":2,"image":"mouse\/aug_1_1364.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":6,"image":"lion\/aug_0_90.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":27,"image":"skunk\/aug_0_2299.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":36,"image":"coyote\/aug_1_855.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":41,"image":"skunk\/aug_1_2360.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":49,"image":"mouse\/aug_1_1368.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":50,"image":"mink\/aug_1_693.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":52,"image":"skunk\/aug_1_2386.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":65,"image":"gray_fox\/aug_1_1665.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":91,"image":"goose\/aug_0_930.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":111,"image":"gray_fox\/aug_1_1687.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":112,"image":"skunk\/aug_0_2288.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":115,"image":"mink\/aug_1_684.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":118,"image":"gray_fox\/aug_1_1705.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":134,"image":"skunk\/aug_0_2371.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":135,"image":"mouse\/aug_1_1412.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":163,"image":"lion\/aug_1_59.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":167,"image":"raccoon\/aug_0_281.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":169,"image":"skunk\/aug_0_2385.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":172,"image":"coyote\/aug_1_883.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":180,"image":"mouse\/aug_1_1440.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":183,"image":"western_grey_squirrel\/aug_0_589.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":185,"image":"raccoon\/aug_0_360.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":186,"image":"coyote\/aug_1_825.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":187,"image":"black_bear\/aug_0_1293.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":191,"image":"beaver\/aug_1_1512.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":198,"image":"beaver\/aug_0_1559.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":207,"image":"goose\/aug_1_982.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":218,"image":"western_grey_squirrel\/aug_0_409.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":225,"image":"mink\/aug_1_728.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":272,"image":"goose\/aug_0_938.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":279,"image":"coyote\/aug_1_873.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":281,"image":"lion\/aug_0_35.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":283,"image":"black_bear\/aug_0_1232.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":286,"image":"gray_fox\/aug_1_1647.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":288,"image":"lion\/aug_1_90.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":308,"image":"mouse\/aug_1_1401.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":319,"image":"coyote\/aug_0_811.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":358,"image":"beaver\/aug_0_1497.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":366,"image":"coyote\/aug_1_837.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":369,"image":"raccoon\/aug_0_404.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":413,"image":"western_grey_squirrel\/aug_0_471.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":422,"image":"mink\/aug_0_762.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":440,"image":"black_bear\/aug_0_1250.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":472,"image":"beaver\/aug_1_1547.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":499,"image":"beaver\/aug_0_1493.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":511,"image":"gray_fox\/aug_0_1667.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":515,"image":"goose\/aug_1_959.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":532,"image":"gray_fox\/aug_1_1676.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":539,"image":"mouse\/aug_0_1485.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":543,"image":"coyote\/aug_1_878.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":547,"image":"skunk\/aug_1_2292.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":551,"image":"black_bear\/aug_0_1258.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":555,"image":"beaver\/aug_0_1588.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":611,"image":"black_bear\/aug_0_1243.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":625,"image":"mink\/aug_0_772.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":646,"image":"mouse\/aug_1_1442.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":653,"image":"skunk\/aug_1_2391.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":668,"image":"western_grey_squirrel\/aug_0_494.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":687,"image":"goose\/aug_1_1060.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":689,"image":"coyote\/aug_0_877.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":692,"image":"skunk\/aug_0_2359.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":696,"image":"beaver\/aug_1_1549.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":702,"image":"lion\/aug_1_75.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":703,"image":"goose\/aug_1_946.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":711,"image":"western_grey_squirrel\/aug_0_463.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":715,"image":"skunk\/aug_0_2292.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":720,"image":"western_grey_squirrel\/aug_0_613.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":731,"image":"skunk\/aug_0_2321.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":732,"image":"gray_fox\/aug_1_1658.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":738,"image":"lion\/aug_0_24.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":747,"image":"black_bear\/aug_0_1205.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":785,"image":"beaver\/aug_1_1493.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":790,"image":"coyote\/aug_1_864.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":799,"image":"goose\/aug_0_1035.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":817,"image":"mink\/aug_1_723.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":819,"image":"skunk\/aug_0_2360.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":824,"image":"horse\/aug_0_2044.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":827,"image":"turkey\/aug_1_2505.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":835,"image":"bob_cat\/aug_0_1760.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":845,"image":"bob_cat\/aug_0_1790.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":856,"image":"goose\/aug_0_1026.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":860,"image":"mink\/aug_0_659.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":872,"image":"rat\/aug_1_1168.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":885,"image":"goose\/aug_0_1015.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":886,"image":"raccoon\/aug_0_303.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":897,"image":"turkey\/aug_1_2451.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":901,"image":"raccoon\/aug_0_143.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":915,"image":"rat\/aug_1_1129.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":930,"image":"skunk\/aug_0_2332.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":933,"image":"goose\/aug_0_950.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":938,"image":"beaver\/aug_0_1577.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":954,"image":"mouse\/aug_0_1395.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":960,"image":"rat\/aug_0_1067.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":973,"image":"bob_cat\/aug_0_1798.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":978,"image":"otter\/aug_1_1899.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":1011,"image":"bob_cat\/aug_0_1792.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":1017,"image":"beaver\/aug_0_1524.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":1020,"image":"coyote\/aug_1_910.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":1024,"image":"goose\/aug_0_1046.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":1025,"image":"lion\/aug_1_48.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":1027,"image":"turkey\/aug_1_2411.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":1032,"image":"mouse\/aug_0_1417.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":1041,"image":"otter\/aug_0_1895.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":1055,"image":"black_bear\/aug_0_1295.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":1060,"image":"raccoon\/aug_0_185.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":1073,"image":"mouse\/aug_1_1365.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":1079,"image":"gray_fox\/aug_0_1711.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":1083,"image":"turkey\/aug_0_2501.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":1088,"image":"gray_fox\/aug_1_1605.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":1094,"image":"raccoon\/aug_0_225.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":1104,"image":"black_bear\/aug_0_1329.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":1105,"image":"lion\/aug_0_31.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":1112,"image":"skunk\/aug_0_2302.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":1120,"image":"bob_cat\/aug_0_1845.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":1130,"image":"gray_fox\/aug_0_1695.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":1137,"image":"mouse\/aug_1_1385.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":1142,"image":"coyote\/aug_1_912.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":1165,"image":"lion\/aug_1_15.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":1178,"image":"raccoon\/aug_0_98.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":1193,"image":"mouse\/aug_0_1440.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":1226,"image":"horse\/aug_2_2045.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":1227,"image":"beaver\/aug_1_1567.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":1231,"image":"mink\/aug_1_681.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":1276,"image":"mouse\/aug_0_1399.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":1309,"image":"coyote\/aug_1_808.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":1320,"image":"black_bear\/aug_0_1339.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":1321,"image":"lion\/aug_0_83.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":1356,"image":"otter\/aug_1_1960.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":1377,"image":"black_bear\/aug_0_1264.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":1380,"image":"lion\/aug_1_57.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":1389,"image":"gray_fox\/aug_0_1703.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":1409,"image":"otter\/aug_1_1964.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":1415,"image":"mouse\/aug_1_1427.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":1416,"image":"mink\/aug_0_697.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":1421,"image":"black_bear\/aug_0_1217.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":1445,"image":"mouse\/aug_1_1432.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":1449,"image":"lion\/aug_0_25.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":1454,"image":"mink\/aug_1_726.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":1464,"image":"turkey\/aug_1_2418.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":1477,"image":"black_bear\/aug_0_1248.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":1486,"image":"otter\/aug_0_1987.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":1502,"image":"horse\/aug_2_1999.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":1513,"image":"gray_fox\/aug_0_1648.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":1524,"image":"rat\/aug_0_1170.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":1535,"image":"otter\/aug_0_1915.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":1538,"image":"horse\/aug_0_2043.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":1543,"image":"black_bear\/aug_0_1328.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":1562,"image":"horse\/aug_2_2049.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":1577,"image":"mouse\/aug_1_1463.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":1608,"image":"otter\/aug_0_1983.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":1610,"image":"beaver\/aug_0_1520.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":1619,"image":"lion\/aug_1_28.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":1627,"image":"gray_fox\/aug_0_1683.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":1630,"image":"raccoon\/aug_0_110.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":1631,"image":"lion\/aug_1_43.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":1636,"image":"bob_cat\/aug_0_1734.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":1642,"image":"mink\/aug_0_744.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":1666,"image":"lion\/aug_1_93.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":1670,"image":"otter\/aug_0_1911.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":1693,"image":"bob_cat\/aug_0_1737.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":1696,"image":"skunk\/aug_1_2332.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":1699,"image":"mouse\/aug_0_1490.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":1725,"image":"otter\/aug_0_1918.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":1727,"image":"mink\/aug_0_780.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":1730,"image":"bob_cat\/aug_0_1757.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":1742,"image":"horse\/aug_1_2014.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":1760,"image":"bob_cat\/aug_0_1746.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":1786,"image":"skunk\/aug_1_2322.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":1801,"image":"lion\/aug_0_41.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":1812,"image":"gray_fox\/aug_1_1636.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":1813,"image":"horse\/aug_0_2053.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":1818,"image":"bob_cat\/aug_0_1853.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":1821,"image":"bob_cat\/aug_0_1732.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":1848,"image":"mink\/aug_1_661.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":1855,"image":"mink\/aug_1_707.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":1871,"image":"gray_fox\/aug_0_1688.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":1873,"image":"beaver\/aug_0_1554.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":1883,"image":"bob_cat\/aug_0_1731.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":1889,"image":"gray_fox\/aug_0_1657.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":1902,"image":"bob_cat\/aug_0_1858.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":1907,"image":"black_bear\/aug_0_1294.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":1937,"image":"bob_cat\/aug_0_1744.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":1954,"image":"turkey\/aug_1_2502.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":1956,"image":"horse\/aug_1_2049.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":1965,"image":"mouse\/aug_0_1404.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":1973,"image":"horse\/aug_2_2002.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":1975,"image":"rat\/aug_0_1148.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":1994,"image":"black_bear\/aug_0_1299.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":2000,"image":"lion\/aug_0_61.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":2006,"image":"gray_fox\/aug_1_1713.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":2008,"image":"mink\/aug_0_723.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":2012,"image":"horse\/aug_0_2022.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":2021,"image":"mouse\/aug_1_1421.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":2079,"image":"lion\/aug_0_59.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":2082,"image":"bob_cat\/aug_0_1722.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":2089,"image":"coyote\/aug_0_862.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":2104,"image":"turkey\/aug_0_2417.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":2106,"image":"gray_fox\/aug_1_1684.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":2118,"image":"goose\/aug_0_951.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":2132,"image":"western_grey_squirrel\/aug_0_485.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":2138,"image":"beaver\/aug_0_1542.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":2154,"image":"turkey\/aug_1_2471.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":2159,"image":"raccoon\/aug_0_107.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":2163,"image":"rat\/aug_0_1174.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":2182,"image":"beaver\/aug_0_1504.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":2187,"image":"skunk\/aug_0_2381.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":2200,"image":"otter\/aug_1_1977.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":2214,"image":"otter\/aug_1_1919.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":2230,"image":"horse\/aug_0_1993.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":2248,"image":"rat\/aug_1_1066.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":2252,"image":"lion\/aug_0_69.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":2260,"image":"turkey\/aug_0_2416.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":2281,"image":"black_bear\/aug_0_1343.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":2282,"image":"goose\/aug_0_935.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":2293,"image":"skunk\/aug_1_2354.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":2295,"image":"goose\/aug_1_1026.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":2307,"image":"bob_cat\/aug_0_1794.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":2316,"image":"horse\/aug_0_2028.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":2321,"image":"goose\/aug_0_981.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":2326,"image":"skunk\/aug_0_2397.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":2333,"image":"turkey\/aug_1_2442.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":2336,"image":"mouse\/aug_0_1491.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":2338,"image":"beaver\/aug_0_1550.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":2340,"image":"bob_cat\/aug_0_1771.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":2341,"image":"coyote\/aug_1_885.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":2351,"image":"black_bear\/aug_0_1214.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":2380,"image":"gray_fox\/aug_0_1609.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":2382,"image":"raccoon\/aug_0_226.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":2395,"image":"mink\/aug_0_739.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":2396,"image":"black_bear\/aug_0_1193.jpg","id_espece":10,"id_etat":3,"nom_fr":"Ours noir","label_class":9}
+{"id_image":2398,"image":"gray_fox\/aug_1_1590.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":2415,"image":"otter\/aug_1_1898.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":2417,"image":"gray_fox\/aug_1_1598.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":2435,"image":"raccoon\/aug_0_397.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":2439,"image":"otter\/aug_0_1971.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":2444,"image":"mink\/aug_0_741.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":2450,"image":"mouse\/aug_0_1489.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":2452,"image":"bob_cat\/aug_0_1875.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":2463,"image":"goose\/aug_0_1034.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":2465,"image":"horse\/aug_2_2024.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":2467,"image":"lion\/aug_1_38.jpg","id_espece":15,"id_etat":3,"nom_fr":"lion","label_class":14}
+{"id_image":2469,"image":"coyote\/aug_0_859.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":2487,"image":"turkey\/aug_1_2445.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":2488,"image":"rat\/aug_0_1169.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":2509,"image":"beaver\/aug_1_1515.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":2515,"image":"gray_fox\/aug_1_1664.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":2520,"image":"coyote\/aug_0_920.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":2524,"image":"mink\/aug_1_763.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":2537,"image":"skunk\/aug_1_2392.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":2540,"image":"raccoon\/aug_0_137.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":2544,"image":"mink\/aug_0_763.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":2547,"image":"coyote\/aug_0_840.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":2549,"image":"otter\/aug_1_1980.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":2552,"image":"beaver\/aug_1_1556.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":2556,"image":"skunk\/aug_0_2409.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":2557,"image":"rat\/aug_0_1144.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":2581,"image":"rat\/aug_1_1137.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":2587,"image":"gray_fox\/aug_1_1624.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":2591,"image":"mink\/aug_0_785.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":2599,"image":"coyote\/aug_1_843.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":2609,"image":"turkey\/aug_0_2425.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":2620,"image":"coyote\/aug_1_920.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":2644,"image":"gray_fox\/aug_1_1603.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":2645,"image":"otter\/aug_1_1979.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":2663,"image":"raccoon\/aug_0_148.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":2669,"image":"coyote\/aug_0_881.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":2677,"image":"western_grey_squirrel\/aug_0_580.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":2685,"image":"horse\/aug_2_2060.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":2688,"image":"skunk\/aug_1_2384.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":2697,"image":"rat\/aug_0_1072.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":2703,"image":"beaver\/aug_0_1528.jpg","id_espece":13,"id_etat":3,"nom_fr":"Castor","label_class":12}
+{"id_image":2705,"image":"mouse\/aug_0_1444.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":2724,"image":"skunk\/aug_0_2338.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":2735,"image":"coyote\/aug_0_882.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":2737,"image":"bob_cat\/aug_0_1750.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":2738,"image":"gray_fox\/aug_0_1696.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":2744,"image":"skunk\/aug_1_2407.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":2765,"image":"mink\/aug_0_680.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":2774,"image":"raccoon\/aug_0_152.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":2776,"image":"skunk\/aug_0_2314.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":2789,"image":"gray_fox\/aug_0_1628.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":2824,"image":"skunk\/aug_1_2375.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":2825,"image":"turkey\/aug_0_2470.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":2853,"image":"mink\/aug_0_781.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":2870,"image":"bob_cat\/aug_0_1846.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":2922,"image":"rat\/aug_0_1126.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":2928,"image":"horse\/aug_0_2046.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":2944,"image":"western_grey_squirrel\/aug_0_554.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":2951,"image":"otter\/aug_1_1909.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":2953,"image":"raccoon\/aug_0_336.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":2958,"image":"mink\/aug_1_748.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":2967,"image":"otter\/aug_1_1969.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":2977,"image":"coyote\/aug_1_899.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":2987,"image":"coyote\/aug_1_813.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":2996,"image":"coyote\/aug_1_845.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":3001,"image":"mink\/aug_1_671.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":3024,"image":"skunk\/aug_1_2359.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":3028,"image":"bob_cat\/aug_0_1837.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":3038,"image":"horse\/aug_1_2053.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":3052,"image":"otter\/aug_0_1941.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":3075,"image":"mink\/aug_1_787.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":3084,"image":"coyote\/aug_0_902.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":3085,"image":"mouse\/aug_0_1411.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":3096,"image":"rat\/aug_0_1173.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":3098,"image":"western_grey_squirrel\/aug_0_449.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":3107,"image":"mink\/aug_0_691.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":3111,"image":"goose\/aug_1_994.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":3122,"image":"gray_fox\/aug_1_1595.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":3134,"image":"coyote\/aug_1_812.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":3159,"image":"western_grey_squirrel\/aug_0_435.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":3163,"image":"otter\/aug_0_1897.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":3178,"image":"skunk\/aug_1_2393.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":3182,"image":"coyote\/aug_0_826.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":3190,"image":"rat\/aug_1_1112.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":3196,"image":"goose\/aug_0_1004.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":3202,"image":"bob_cat\/aug_0_1821.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":3218,"image":"rat\/aug_0_1131.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":3225,"image":"coyote\/aug_0_869.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":3227,"image":"raccoon\/aug_0_370.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":3228,"image":"western_grey_squirrel\/aug_0_563.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":3243,"image":"western_grey_squirrel\/aug_0_560.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":3255,"image":"raccoon\/aug_0_227.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":3264,"image":"bob_cat\/aug_0_1777.jpg","id_espece":8,"id_etat":3,"nom_fr":"Chat","label_class":7}
+{"id_image":3280,"image":"horse\/aug_2_2056.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":3281,"image":"otter\/aug_0_1896.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":3287,"image":"skunk\/aug_1_2368.jpg","id_espece":9,"id_etat":3,"nom_fr":"putois","label_class":8}
+{"id_image":3313,"image":"gray_fox\/aug_0_1666.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":3326,"image":"turkey\/aug_0_2513.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":3331,"image":"gray_fox\/aug_1_1610.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":3332,"image":"raccoon\/aug_0_200.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":3346,"image":"coyote\/aug_0_891.jpg","id_espece":7,"id_etat":3,"nom_fr":"Coyote","label_class":6}
+{"id_image":3351,"image":"rat\/aug_0_1175.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":3355,"image":"goose\/aug_0_1033.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":3357,"image":"western_grey_squirrel\/aug_0_441.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":3361,"image":"horse\/aug_2_2028.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":3378,"image":"horse\/aug_1_2018.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":3379,"image":"otter\/aug_1_1914.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":3399,"image":"turkey\/aug_0_2495.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":3419,"image":"mouse\/aug_1_1423.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":3424,"image":"gray_fox\/aug_0_1700.jpg","id_espece":4,"id_etat":3,"nom_fr":"Renard gris","label_class":3}
+{"id_image":3425,"image":"goose\/aug_0_1007.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":3441,"image":"turkey\/aug_1_2446.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":3447,"image":"raccoon\/aug_0_357.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":3453,"image":"western_grey_squirrel\/aug_0_550.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":3455,"image":"raccoon\/aug_0_136.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":3459,"image":"horse\/aug_1_2029.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":3467,"image":"mink\/aug_1_679.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":3479,"image":"rat\/aug_0_1149.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":3499,"image":"otter\/aug_1_1973.jpg","id_espece":12,"id_etat":3,"nom_fr":"loutre","label_class":11}
+{"id_image":3501,"image":"western_grey_squirrel\/aug_0_634.jpg","id_espece":14,"id_etat":3,"nom_fr":"Ecureuil","label_class":13}
+{"id_image":3502,"image":"mouse\/aug_1_1476.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":3505,"image":"mink\/aug_0_699.jpg","id_espece":6,"id_etat":3,"nom_fr":"Vison","label_class":5}
+{"id_image":3546,"image":"raccoon\/aug_0_223.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":3561,"image":"rat\/aug_1_1145.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":3576,"image":"horse\/aug_2_2025.jpg","id_espece":3,"id_etat":3,"nom_fr":"cheval","label_class":2}
+{"id_image":3598,"image":"mouse\/aug_1_1389.jpg","id_espece":2,"id_etat":3,"nom_fr":"souris","label_class":1}
+{"id_image":3601,"image":"rat\/aug_1_1177.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":3604,"image":"turkey\/aug_1_2437.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":3611,"image":"turkey\/aug_0_2424.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":3613,"image":"rat\/aug_1_1110.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":3652,"image":"turkey\/aug_0_2410.jpg","id_espece":1,"id_etat":3,"nom_fr":"Dinde","label_class":0}
+{"id_image":3665,"image":"goose\/aug_1_942.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":3667,"image":"raccoon\/aug_0_339.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":3671,"image":"goose\/aug_1_979.jpg","id_espece":5,"id_etat":3,"nom_fr":"Oie","label_class":4}
+{"id_image":3673,"image":"raccoon\/aug_0_363.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":3706,"image":"rat\/aug_1_1156.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":3707,"image":"raccoon\/aug_0_341.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":3724,"image":"rat\/aug_1_1084.jpg","id_espece":11,"id_etat":3,"nom_fr":"Rat","label_class":10}
+{"id_image":3725,"image":"muledeer\/aug_0_2238.jpg","id_espece":17,"id_etat":3,"nom_fr":"cerf mulet","label_class":16}
+{"id_image":3735,"image":"muledeer\/aug_0_2243.jpg","id_espece":17,"id_etat":3,"nom_fr":"cerf mulet","label_class":16}
+{"id_image":3762,"image":"raccoon\/aug_0_122.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":3778,"image":"raccoon\/aug_0_332.jpg","id_espece":16,"id_etat":3,"nom_fr":"raton laveur","label_class":15}
+{"id_image":3794,"image":"muledeer\/aug_0_2232.jpg","id_espece":17,"id_etat":3,"nom_fr":"cerf mulet","label_class":16}
+{"id_image":3803,"image":"muledeer\/aug_0_2182.jpg","id_espece":17,"id_etat":3,"nom_fr":"cerf mulet","label_class":16}
+{"id_image":3805,"image":"muledeer\/aug_0_2186.jpg","id_espece":17,"id_etat":3,"nom_fr":"cerf mulet","label_class":16}
+{"id_image":3808,"image":"muledeer\/aug_0_2127.jpg","id_espece":17,"id_etat":3,"nom_fr":"cerf mulet","label_class":16}
+{"id_image":3811,"image":"muledeer\/aug_0_2256.jpg","id_espece":17,"id_etat":3,"nom_fr":"cerf mulet","label_class":16}
+{"id_image":3812,"image":"muledeer\/aug_0_2241.jpg","id_espece":17,"id_etat":3,"nom_fr":"cerf mulet","label_class":16}
+{"id_image":3842,"image":"muledeer\/aug_0_2225.jpg","id_espece":17,"id_etat":3,"nom_fr":"cerf mulet","label_class":16}
+{"id_image":3859,"image":"muledeer\/aug_0_2129.jpg","id_espece":17,"id_etat":3,"nom_fr":"cerf mulet","label_class":16}
+{"id_image":3866,"image":"muledeer\/aug_0_2135.jpg","id_espece":17,"id_etat":3,"nom_fr":"cerf mulet","label_class":16}
+{"id_image":3871,"image":"muledeer\/aug_0_2203.jpg","id_espece":17,"id_etat":3,"nom_fr":"cerf mulet","label_class":16}
+{"id_image":3900,"image":"muledeer\/aug_0_2280.jpg","id_espece":17,"id_etat":3,"nom_fr":"cerf mulet","label_class":16}
+{"id_image":3908,"image":"muledeer\/aug_0_2217.jpg","id_espece":17,"id_etat":3,"nom_fr":"cerf mulet","label_class":16}
+{"id_image":3915,"image":"muledeer\/aug_0_2222.jpg","id_espece":17,"id_etat":3,"nom_fr":"cerf mulet","label_class":16}
