@@ -3,6 +3,11 @@ ETL/data/dataset_img/*
 ETL/.output/data/nettoye.parquet/
 ETL/.output/data/nettoye.csv/
 ETL/ressource/*
+ressource/
+Machine Learning/results/*
+Machine Learning/logs/*
+Machine Learning/models/*
+
 # Ignorer les fichiers de données
 ETL/data/OpenAnimalTracks/*
 .env
